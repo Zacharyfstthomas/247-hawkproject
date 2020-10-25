@@ -1,0 +1,30 @@
+{"account" : [
+  {
+    "accountName" : "samsmith98"
+    "userFullName" : "Sam Smith"
+    "dob" : 011598
+    "emailAddress" : "ssmith@email.sc.edu"
+    "phoneNumber" : 6732973318
+    "userName" : "samsmith"
+    "password" : "Carolina98"
+    "reviews" : "None"
+  },{
+    "accountName" : "hannahfaus00"
+    "userFullName" : "Hannah Faus"
+    "dob" : 111200
+    "emailAddress" : "hfaus@email.sc.edu"
+    "phoneNumber" : 9593852422
+    "userName" : "hfaus"
+    "password" : "Colahall19"
+    "reviews" :  "None"
+  },{
+    "accountName" : "jacobrobinson99"
+    "userFullName" : "Jacob Robinson"
+    "dob" : 052599
+    "emailAddress" : "jrobinson@email.sc.edu"
+    "phoneNumber" : 5999337522
+    "userName" : "jjrobbie"
+    "password" : "Gamecocks90"
+    "reviews" :  "None"
+  }
+]}
