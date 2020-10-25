@@ -1,7 +1,7 @@
 
 public class ListingStorer {
 
-	
+	// This ideally is where we'd put the JSON reader/writer?
 	private Listing listing;
 	private int id;
 	
@@ -13,7 +13,6 @@ public class ListingStorer {
 		
 		return null;
 	}
-	
 	
 	
 }

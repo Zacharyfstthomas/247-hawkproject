@@ -11,7 +11,7 @@ public class Listing {
 	private String description;
 	private Review review;
 	
-	public Listing(double price, String address, int capactiy, double distance, String housingType, boolean avaliable, String description) {
+	public Listing(double price, String address, int capacity, double distance, String housingType, boolean avaliable, String description) {
 			this.price = price;
 			this.address = address;
 			this.capacity = capacity;
