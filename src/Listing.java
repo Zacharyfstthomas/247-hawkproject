@@ -12,7 +12,6 @@ public class Listing {
 	private Review review;
 	
 	public Listing(double price, String address, int capactiy, double distance, String housingType, boolean avaliable, String description) {
-		
 			this.price = price;
 			this.address = address;
 			this.capacity = capacity;
@@ -32,6 +31,12 @@ public class Listing {
 	public void toggleAvaliability() {
 		
 		this.avaliable = !(this.avaliable);
+		
+	}
+	
+	public boolean getAvaliability() {
+		
+		return this.avaliable;
 		
 	}
 
@@ -67,6 +72,11 @@ public class Listing {
 		this.id = id;
 	}
 
+	public String toString() {
+		
+		return this.address + "\nCapacity: " + this.capacity + "\nDistance from Campus: " + this.distance + "\n" + this.housingType + "\n" + this.description + "\nPrice: " + this.price;
+	}
+	
 	public double getDistance() {
 		return distance;
 	}
