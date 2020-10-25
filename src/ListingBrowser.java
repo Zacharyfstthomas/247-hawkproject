@@ -2,14 +2,14 @@ import java.util.ArrayList;
 
 public class ListingBrowser {
 
-	public ArrayList<Listing> listings;
+	public ArrayList<Listing> listings; 
 	public static ListingBrowser listingbrowser;
 	private int count;
 	
 	public static ListingBrowser getInstance() {
 		if(listingbrowser == null) {
 			return new ListingBrowser();
-		} 
+		}
 		
 		return listingbrowser;
 	}
@@ -52,6 +52,17 @@ public class ListingBrowser {
 		
 		
 	}
+	
+	// Potentially another display to display a custom amount 
+	public void display(ArrayList<Listing> listings) {
+		
+		for(Listing listing : listings) {
+			System.out.println("Results:");
+			System.out.println("--------------- Listing " + (listing.getId() + 1) + " ------------------");	
+			System.out.println(listing.toString());
+		}
+	}
+	
 	//is this nessicary?
 	public void pageForward() {
 		

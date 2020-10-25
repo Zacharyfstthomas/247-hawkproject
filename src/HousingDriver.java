@@ -10,6 +10,7 @@ public class HousingDriver {
 		ListingBrowser listings = ListingBrowser.getInstance();
 		Search find = new Search();
 		//ListingStorer listingmanager = new ListingStorer();
+
 		listings.addListing(40, "453 Gervais St", 4, 0.5, "house", true, "mediocre");
 
 		
@@ -22,20 +23,21 @@ public class HousingDriver {
 		System.out.println("Would you like to search for a specific listing?");
 		String choice = input.nextLine();
 		if(choice.equalsIgnoreCase("yes") || choice.equalsIgnoreCase("y")){
-			find.getCriteria();
+			// the below line has poor naming, but basically gets the arraylist from the listing instance.
+			listings.display(find.getCriteria(listings.listings));
 			//also search for amenities
 		}
-		
+			
 			System.out.println("Continue?");
 			String exitchoice = input.nextLine();
-			if(choice.equals("no")){
+			if(exitchoice.equals("no")){
 				System.exit(0);
 			}
 			
 			if(listings.getCount() > 5) {
 			System.out.println("Return to previous page?");
 			String backchoice = input.nextLine();
-			if(choice.equals("yes")){
+			if(backchoice.equals("yes")){
 				listings.pageBackward();
 				}
 			}
