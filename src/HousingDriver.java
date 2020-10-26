@@ -8,7 +8,7 @@ public class HousingDriver {
 		while(true) {	
 		Scanner input = new Scanner(System.in);
 		ListingBrowser listings = ListingBrowser.getInstance();
-		Search find = new Search();
+		SearchListings find = new SearchListings();
 		//ListingStorer listingmanager = new ListingStorer();
 //							price address am. available, 2 bed 2 bath, distance, type, available(boolean), description
 		listings.addListing(40, "453 Gervais St", 4, 2, 2, 0.5, "house", true, "mediocre");
