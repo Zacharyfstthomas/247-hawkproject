@@ -10,8 +10,8 @@ public class HousingDriver {
 		ListingBrowser listings = ListingBrowser.getInstance();
 		Search find = new Search();
 		//ListingStorer listingmanager = new ListingStorer();
-
-		listings.addListing(40, "453 Gervais St", 4, 0.5, "house", true, "mediocre");
+//							price address am. available, 2 bed 2 bath, distance, type, available(boolean), description
+		listings.addListing(40, "453 Gervais St", 4, 2, 2, 0.5, "house", true, "mediocre");
 
 		
 		listings.display();

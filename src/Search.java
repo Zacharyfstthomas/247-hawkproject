@@ -21,13 +21,13 @@ public class Search <T> {
 			return this.findDoubMatches(criteria, doubValue);
 		}
 		 
-		if(criteria.equalsIgnoreCase("address") || criteria.equalsIgnoreCase("housingType") || criteria.equalsIgnoreCase("description")) {
+		if(criteria.equalsIgnoreCase("address") || criteria.equalsIgnoreCase("description") || criteria.equalsIgnoreCase("housing type") || criteria.equalsIgnoreCase("housing") || criteria.equalsIgnoreCase("housingtype") ) {
 			System.out.println("Enter the value to search for:");
 			String strnValue = input.next(); 
 			return this.findStrnMatches(criteria, strnValue);
 		}
 		
-		if(criteria.equalsIgnoreCase("capacity") || criteria.equalsIgnoreCase("id")) {
+		if(criteria.equalsIgnoreCase("bedrooms") || criteria.equalsIgnoreCase("baths") || criteria.equalsIgnoreCase("amountavaliable") || criteria.equalsIgnoreCase("amount avaliable") || criteria.equalsIgnoreCase("id")) {
 			System.out.println("Enter the value to search for:");
 			int intValue = input.nextInt(); 
 			return this.findIntMatches(criteria, intValue);
@@ -48,7 +48,17 @@ public class Search <T> {
 					returnArrList.add(listing);
 				}
 				
-			} else {
+			} else if(criteria.equals("bedrooms")) {
+				if(listing.getBedrooms() == value) {
+					returnArrList.add(listing);
+				}
+			} else if(criteria.equals("baths")) {
+				if(listing.getBaths() == value) {
+					returnArrList.add(listing);
+				}
+			}			
+			
+			else{
 				if(listing.getCapacity() == value) {
 					returnArrList.add(listing);
 				}

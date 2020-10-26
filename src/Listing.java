@@ -3,24 +3,26 @@ public class Listing {
 	
 	private double price;
 	private String address;
-	private int capacity;
+	private int capacity; //CAPACITY IS NOT CAPACITY. Now represents 'amount avaliable' (see project website)
 	private int id;
 	private double distance;
 	private String housingType;
 	private boolean avaliable;
+	private int bedrooms;
+	private int baths;
 	private String description;
 	private Review review;
 	
-	public Listing(double price, String address, int capacity, double distance, String housingType, boolean avaliable, String description) {
+	public Listing(double price, String address, int capacity, int bedrooms, int baths, double distance, String housingType, boolean avaliable, String description) {
 			this.price = price;
 			this.address = address;
 			this.capacity = capacity;
-			this.id = id;
+			this.bedrooms = bedrooms;
+			this.baths = baths;
 			this.distance = distance;
 			this.housingType = housingType;
 			this.avaliable = avaliable;
 			this.description = description;
-			this.review = review;
 	}
 	
 	public void storeListing() {
@@ -31,12 +33,6 @@ public class Listing {
 	public void toggleAvaliability() {
 		
 		this.avaliable = !(this.avaliable);
-		
-	}
-	
-	public boolean getAvaliability() {
-		
-		return this.avaliable;
 		
 	}
 
@@ -74,7 +70,7 @@ public class Listing {
 
 	public String toString() {
 		
-		return this.address + "\nCapacity: " + this.capacity + "\nDistance from Campus: " + this.distance + "\n" + this.housingType + "\n" + this.description + "\nPrice: " + this.price;
+		return this.address + "\nAmount Avaliable: " + this.capacity + "\nDistance from Campus: " + this.distance + "\nHousing Type: " + this.housingType + "\nBedrooms: "+ this.bedrooms + "\nBaths: " + this.baths + "\nDescription: " + this.description + "\nPrice: " + this.price;
 	}
 	
 	public double getDistance() {
@@ -91,6 +87,26 @@ public class Listing {
 
 	public void setHousingType(String housingType) {
 		this.housingType = housingType;
+	}
+
+	public boolean isAvaliable() {
+		return avaliable;
+	}
+
+	public int getBedrooms() {
+		return bedrooms;
+	}
+
+	public void setBedrooms(int bedrooms) {
+		this.bedrooms = bedrooms;
+	}
+
+	public int getBaths() {
+		return baths;
+	}
+
+	public void setBaths(int baths) {
+		this.baths = baths;
 	}
 
 	public String getDescription() {
