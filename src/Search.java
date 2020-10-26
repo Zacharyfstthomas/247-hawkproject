@@ -1,4 +1,15 @@
+import java.util.ArrayList;
+public class Search <T>{
 
-public class Search {
-
+	public void showPage() {
+	
+	}
+	
+	public void getCriteria() {
+		return 
+	}
+	
+	public ArrayList<T> findMatches(){
+		
+	}
 }

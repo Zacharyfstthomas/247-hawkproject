@@ -1,4 +1,8 @@
 
-public class LeasingOption {
+public class LeasingOption extends Option{
 
+	public String signLease() {
+		
+	}
+	
 }
