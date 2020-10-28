@@ -1,11 +1,51 @@
 import java.util.Scanner;
 public class HousingDriver {
 
+	//ideally to be used to log into an account, and register new accounts.
+	// "registering" referring to writing them into a json file.
+	
+	public void promptAccount() {
+		Scanner input = new Scanner(System.in);
+		System.out.println("Welcome back! Do you have an account with us?");
+		String choice = input.nextLine();
+		
+		if(choice.equalsIgnoreCase("yes") || choice.equalsIgnoreCase("y")){
+			System.out.println("Username:");
+			String username = input.nextLine();
+			System.out.println("Password:");
+			String password = input.nextLine();
+			//TODO Add verification ability through accountPage or accountBrowser, so it can actually verify that someone
+			// is logging into an actual account. As of now, just takes 2 inputs..
+			
+		} else {
+			System.out.println("Would you like to create one?");
+			choice = input.nextLine();
+			if(choice.equalsIgnoreCase("yes") || choice.equalsIgnoreCase("y")){
+				System.out.println("Enter your Username:");
+				String username = input.nextLine();
+				System.out.println("Enter your Password:");
+				String password = input.nextLine();
+				//Other account details will be added here.
+			} 
+				
+				return;
+		
+		}
+		
+	}
+	
+	
 	
 	
 	
 	public void run() {
+		
+		
 		while(true) {	
+			
+			
+			
+			
 		Scanner input = new Scanner(System.in);
 		ListingBrowser listings = ListingBrowser.getInstance();
 		SearchListings find = new SearchListings();
@@ -48,6 +88,7 @@ public class HousingDriver {
 	
 	public static void main(String[] args){
 		HousingDriver stockDriver = new HousingDriver();
+		stockDriver.promptAccount();
 		stockDriver.run();
 	}
 	
