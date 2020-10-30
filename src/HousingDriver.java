@@ -45,8 +45,6 @@ public class HousingDriver {
 		while(true) {	
 			
 			
-			
-			
 			Scanner input = new Scanner(System.in);
 			ListingBrowser listings = ListingBrowser.getInstance();
 			SearchListings find = new SearchListings();
@@ -79,7 +77,9 @@ public class HousingDriver {
 						
 					} while (!(amenity.equalsIgnoreCase("done")));
 				//TODO add something here to search a listing's ammenities, and see if they match the inputted ammenities.
-				
+				// Only searches through the resultsListings arrayList, as these are the only ones who will have ammeneties that matter.
+				// Should still show the reulstsLisitng, even if there are no ammeneties matches.
+						
 			} else {
 				listings.display(resultsListings);
 			}

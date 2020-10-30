@@ -1,9 +1,12 @@
 import java.util.ArrayList;
 
+import jdk.nashorn.internal.parser.JSONParser;
+
 public class ListingBrowser {
 
 	public ArrayList<Listing> listings; 
 	public static ListingBrowser listingbrowser;
+	private ListingStorer listingsstorer;
 	private int count;
 	
 	public static ListingBrowser getInstance() {
@@ -32,6 +35,33 @@ public class ListingBrowser {
 		//TODO code here to add to JSON file
 	}
 	
+	
+		public Listing readListing() {
+
+			try {
+				Listing listing = JSONParser.parse(new FileReader("json/listing.json"));
+				JSONObject listing = (JSONObject)o;
+
+				listing.price = (Integer) listing.get("price");
+				listing.address = (String) listing.get("address");
+				listing.capacity = (Integer) listing.get("capacity");
+				listing.id = (Integer) listing.get("id");
+				listing.distance = (Integer) listing.get("distance");
+				listing.housingType = (String) listing.get("housing type");
+				listing.availible = (String) listing.get("availible");
+				listing.description = (String) listing.get("description");
+				
+				
+			//	Iterator iterator = review.iterator();
+			//	while (iterator.hasNext()) {
+			//		System.out.println(iterator.next());
+		//	}
+		
+	} catch (Exception e) {
+		System.out.println("Somethin went wrong boss");
+	}
+	
+}
 //count here is used to ensure that 5 listings are displayed a page.
 // Will hopefully continue through a steady line of all available listings
 // try-catch will break out of display when at the end of the list
