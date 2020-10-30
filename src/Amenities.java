@@ -25,6 +25,6 @@ public class Amenities extends Listing{
 			returnstring += amenity + "\n";
 		}
 		
-		return listing.ammenitiesReturn() + returnstring;
+		return returnstring;
 	}
 }
