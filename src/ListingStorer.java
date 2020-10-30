@@ -18,7 +18,9 @@ public class ListingStorer {
 	}
 
 	//read the listings from the JSON file
+	
 	public Listing readListing() {
+		JSONParser parser = new JSONParser();
 
 		try {
 			JSONArray listings = jsonParser.parse(new FileReader("json/listing.json"));
