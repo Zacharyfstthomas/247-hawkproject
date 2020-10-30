@@ -22,22 +22,7 @@ public class ListingStorer {
 	public Listing readListing() {
 		JSONParser parser = new JSONParser();
 
-		try {
-			JSONArray listings = jsonParser.parse(new FileReader("json/listing.json"));
-			listings.forEach(listing -> {
-				JsonObject object = (JsonObject) listing;
-				System.out.println(object.get("price"));
-				System.out.println(object.get("address"));
-				System.out.println(object.get("capacity"));
-				System.out.println(object.get("id"));
-				System.out.println(object.get("distance"));
-				System.out.println(object.get("availible"));
-				System.out.println(object.get("description"));
-				System.out.println(object.get("review"));
-			})
-		} catch (Exeception ex) {
-			System.out.println(ex);
-		}
+		
 		try {
 			Object o = jsonParser.parse(new FileReader("json/listing.json"));
 			JSONObject listing = (JSONObject)o;
