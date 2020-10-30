@@ -36,12 +36,13 @@ public class ListingBrowser {
 	public void addListing(double price, String address, int capacity, int bedrooms, int baths, double distance, String housingType, boolean avaliable, String description) {
 		Listing listing1 = new Listing(price, address, capacity,  bedrooms, baths, distance, housingType, avaliable, description);
 		listings.add(listing1);
-		listing1.setId(listings.size()-1);
-		//TODO code here to add to JSON file
+		listing1.setId(listings.size());
+		//TODO code here to write to JSON file.
 	}
 	
 	public void addListing(Listing listing) {
 		listings.add(listing);
+		// to be used by json reader.
 		
 	}
 	
@@ -78,17 +79,34 @@ public class ListingBrowser {
 			try {
 				Listing listing = listings.get(count);
 				if(listing.isAvaliable()) {
-				System.out.println("--------------- Listing " + (listing.getId() + 1) + " ------------------");	
+				System.out.println("--------------- Listing " + (listing.getId()) + " ------------------");	
+				if((listing.getAmmenitiesArrayList() != null) && (listing.getAmmenitiesSize() != 0)) {
+					System.out.println(listing.toString());
+					System.out.println(listing.returnAmenities());
+					
+				} else {
+				
 				System.out.println(listing.toString());
 					}	
 				count++;
-			} catch(IndexOutOfBoundsException e){
+			} } catch(IndexOutOfBoundsException e){
 				return;
 			}
 		}while(count % 5  != 0);
 		
 		
 		
+	}
+	
+	public Listing getListing(int id) {
+		for(Listing listing : listings) {
+			
+			if(listing.getId() == id) {
+				return listing;
+			}
+		}
+		
+		return null;
 	}
 	
 	// Potentially another display to display a custom amount 
@@ -101,8 +119,15 @@ public class ListingBrowser {
 		}
 		for(Listing listing : listings) {
 			System.out.println("Results:");
-			System.out.println("--------------- Listing " + (listing.getId() + 1) + " ------------------");	
+			System.out.println("--------------- Listing " + (listing.getId()) + " ------------------");	
+			// returns list of ammenities if ammenities is not empty
+			if((listing.getAmmenitiesArrayList() != null) && (listing.getAmmenitiesSize() != 0)) {
+				System.out.println(listing.toString());
+				System.out.println(listing.returnAmenities());
+				
+			} else {
 			System.out.println(listing.toString());
+			}
 		}
 	}
 	

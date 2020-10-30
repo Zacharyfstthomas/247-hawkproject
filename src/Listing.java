@@ -74,13 +74,25 @@ public class Listing {
 		this.id = id;
 	}
 
+	public ArrayList<String> getAmmenitiesArrayList() {
+		
+		return this.amenities;
+	}
+	
+	public int getAmmenitiesSize() {
+		
+		return this.amenities.size();
+	}
+	
 	public String toString() {
 		
 		return this.address + "\nAmount Avaliable: " + this.capacity + "\nDistance from Campus: " + this.distance + "\nHousing Type: " + this.housingType + "\nBedrooms: "+ this.bedrooms + "\nBaths: " + this.baths + "\nDescription: " + this.description + "\nPrice: " + this.price;
 	}
 	
+	
+	
 	public void addAmmenity(String amenity){
-		amenities.add(amenity);
+		this.amenities.add(amenity);
 	}
 	
 	public String returnAmenities() {
@@ -91,7 +103,7 @@ public class Listing {
 			returnstring += amenity + "\n";
 		}
 		
-		return "Ammenities \n" + returnstring;
+		return "Ammenities: \n" + returnstring;
 	}
 	
 	public double getDistance() {
@@ -136,6 +148,20 @@ public class Listing {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+
+	public boolean foundAmmenityMatch(String ammenity) {
+		for(String amenity: this.amenities) {
+			if(amenity.equalsIgnoreCase(ammenity)) {
+				return true;
+			}
+			
+		}
+		
+		
+		
+		return false;
 	}
 
 	
