@@ -1,14 +1,30 @@
 import java.util.ArrayList;
-public abstract class Amenities extends Listing{
+public class Amenities extends Listing{
 
 	private Listing listing;
 	protected ArrayList<String> amenities;
+	private String amenity;
 	
-	public Amenities(Listing listing) {
-		this.amenities = amenities;
+	public Amenities() {
+		amenities = new ArrayList<String>();
+		this.amenity = amenity;
+		this.listing = listing;
 	}
 	
-	public String addAmenities() {
-		return amenities.addAmenities();
+	public void addAmenity(String amenity) {
+		this.amenities.add(amenity);
+	}
+	
+	
+	
+	public String returnAmenities() {
+		
+		String returnstring = "";
+		for(String amenity : amenities) {
+			
+			returnstring += amenity + "\n";
+		}
+		
+		return listing.ammenitiesReturn() + returnstring;
 	}
 }

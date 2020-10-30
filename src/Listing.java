@@ -1,4 +1,4 @@
-
+import java.util.*;
 public class Listing {
 	
 	private double price;
@@ -11,7 +11,12 @@ public class Listing {
 	private int bedrooms;
 	private int baths;
 	private String description;
-	private Review review;
+	private ArrayList<String> amenities;
+	
+		public Listing() {
+			// as of now, not to be callled\\ 
+			}
+	
 	
 	public Listing(double price, String address, int capacity, int bedrooms, int baths, double distance, String housingType, boolean avaliable, String description) {
 			this.price = price;
@@ -23,6 +28,7 @@ public class Listing {
 			this.housingType = housingType;
 			this.avaliable = avaliable;
 			this.description = description;
+			this.amenities = new ArrayList<String>();
 	}
 	
 	public void storeListing() {
@@ -73,6 +79,21 @@ public class Listing {
 		return this.address + "\nAmount Avaliable: " + this.capacity + "\nDistance from Campus: " + this.distance + "\nHousing Type: " + this.housingType + "\nBedrooms: "+ this.bedrooms + "\nBaths: " + this.baths + "\nDescription: " + this.description + "\nPrice: " + this.price;
 	}
 	
+	public void addAmmenity(String amenity){
+		amenities.add(amenity);
+	}
+	
+	public String returnAmenities() {
+		
+		String returnstring = "";
+		for(String amenity : amenities) {
+			
+			returnstring += amenity + "\n";
+		}
+		
+		return "Ammenities \n" + returnstring;
+	}
+	
 	public double getDistance() {
 		return distance;
 	}
@@ -117,14 +138,6 @@ public class Listing {
 		this.description = description;
 	}
 
-	public Review getReview() {
-		return review;
-	}
-
-	public void setReview(Review review) {
-		this.review = review;
-	}
-	
 	
 	
 }

@@ -3,7 +3,7 @@ import java.util.ArrayList;
 
 import org.json.simple.JSONObject;
 
-import jdk.nashorn.internal.parser.JSONParser;
+//import jdk.nashorn.internal.parser.JSONParser;
 
 import org.json.*;
 
@@ -21,7 +21,7 @@ public class ListingBrowser {
 		
 		return listingbrowser;
 	}
-	
+
 	
 	private ListingBrowser() {
 		this.count = 0;
@@ -45,13 +45,12 @@ public class ListingBrowser {
 		
 	}
 	
-	
-		public Listing readListing() {
-
-			for(JSONObject object : parse)
-				JSONParser parser = new JSONParser();
-				Listing listing = parser.parse(new FileReader("json/listing.json"));
-				JSONObject listingz = (JSONObject)listingz;
+/*
+	public Listing readListing() {
+  		for(JSONObject object : parse)
+			JSONParser parser = new JSONParser();
+			Listing listing = parser.parse(new FileReader("json/listing.json"));
+		JSONObject listingz = (JSONObject)listingz;
 
 				listing.setPrice((Integer) listingz.get("price"));
 				listing.setAddress((String) listingz.get("address"));
@@ -59,18 +58,18 @@ public class ListingBrowser {
 				listing.setId((Integer) listingz.get("id"));
 				listing.setDistance((Integer) listingz.get("distance"));
 				listing.setHousingType((String) listingz.get("housing type"));
-			//	listing.setAvailible((String) listingz.get("availible"));
+			listing.setAvailible((String) listingz.get("availible"));
 				listing.setDescription((String) listingz.get("description"));
 				
 				
-			//	Iterator iterator = review.iterator();
-			//	while (iterator.hasNext()) {
-			//		System.out.println(iterator.next());
-		//	}
+				Iterator iterator = review.iterator();
+				while (iterator.hasNext()) {
+			System.out.println(iterator.next());
+		}
 		
 	} 
 	
-
+	*/
 //count here is used to ensure that 5 listings are displayed a page.
 // Will hopefully continue through a steady line of all available listings
 // try-catch will break out of display when at the end of the list

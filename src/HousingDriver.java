@@ -58,7 +58,6 @@ public class HousingDriver {
 		
 		
 		
-		
 			System.out.println("Would you like to search for a specific listing?");
 			String choice = input.nextLine();
 			if(choice.equalsIgnoreCase("yes") || choice.equalsIgnoreCase("y")){
@@ -74,6 +73,7 @@ public class HousingDriver {
 					String amenity;
 					do {
 						amenity = input.nextLine();
+						
 						
 					} while (!(amenity.equalsIgnoreCase("done")));
 				//TODO add something here to search a listing's ammenities, and see if they match the inputted ammenities.
