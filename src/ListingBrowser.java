@@ -1,6 +1,11 @@
+import java.io.FileReader;
 import java.util.ArrayList;
 
+import org.json.simple.JSONObject;
+
 import jdk.nashorn.internal.parser.JSONParser;
+
+import org.json.*;
 
 public class ListingBrowser {
 
@@ -35,21 +40,27 @@ public class ListingBrowser {
 		//TODO code here to add to JSON file
 	}
 	
+	public void addListing(Listing listing) {
+		listings.add(listing);
+		
+	}
+	
 	
 		public Listing readListing() {
 
-			try {
-				Listing listing = JSONParser.parse(new FileReader("json/listing.json"));
-				JSONObject listing = (JSONObject)o;
+			for(JSONObject object : parse)
+				JSONParser parser = new JSONParser();
+				Listing listing = parser.parse(new FileReader("json/listing.json"));
+				JSONObject listingz = (JSONObject)listingz;
 
-				listing.price = (Integer) listing.get("price");
-				listing.address = (String) listing.get("address");
-				listing.capacity = (Integer) listing.get("capacity");
-				listing.id = (Integer) listing.get("id");
-				listing.distance = (Integer) listing.get("distance");
-				listing.housingType = (String) listing.get("housing type");
-				listing.availible = (String) listing.get("availible");
-				listing.description = (String) listing.get("description");
+				listing.setPrice((Integer) listingz.get("price"));
+				listing.setAddress((String) listingz.get("address"));
+				listing.setCapacity((Integer) listingz.get("capacity"));
+				listing.setId((Integer) listingz.get("id"));
+				listing.setDistance((Integer) listingz.get("distance"));
+				listing.setHousingType((String) listingz.get("housing type"));
+			//	listing.setAvailible((String) listingz.get("availible"));
+				listing.setDescription((String) listingz.get("description"));
 				
 				
 			//	Iterator iterator = review.iterator();
@@ -57,11 +68,9 @@ public class ListingBrowser {
 			//		System.out.println(iterator.next());
 		//	}
 		
-	} catch (Exception e) {
-		System.out.println("Somethin went wrong boss");
-	}
+	} 
 	
-}
+
 //count here is used to ensure that 5 listings are displayed a page.
 // Will hopefully continue through a steady line of all available listings
 // try-catch will break out of display when at the end of the list
