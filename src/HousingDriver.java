@@ -50,10 +50,14 @@ public class HousingDriver {
 			SearchListings find = new SearchListings();
 		//ListingStorer listingmanager = new ListingStorer();
 //							price address am. available, 2 bed 2 bath, distance, type, available(boolean), description
+			
+			
 			listings.addListing(40, "453 Gervais St", 4, 2, 2, 0.5, "house", true, "mediocre");
 			listings.addListing(40, "753 Gervais St", 6, 3, 2, 0.75, "house", true, "shabby");
 			listings.getListing(1).addAmmenity("clownworld");
 		
+			
+			
 			listings.display();
 	
 		
@@ -85,17 +89,17 @@ public class HousingDriver {
 						}
 					}	
 					
-				//TODO add something here to search a listing's ammenities, and see if they match the inputted ammenities.
-				// Only searches through the resultsListings arrayList, as these are the only ones who will have ammeneties that matter.
-				// Should still show the reulstsLisitng, even if there are no ammeneties matches.
-						
+		
 			} else {
 				listings.display(resultsListings);
 			}
 			
 			
-			//also search for amenities
+		
 			}
+			
+			
+			
 			
 			System.out.println("Continue?");
 			String exitchoice = input.nextLine();

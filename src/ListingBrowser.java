@@ -1,7 +1,11 @@
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import org.json.simple.parser.*;
+
 
 //import jdk.nashorn.internal.parser.JSONParser;
 
@@ -18,7 +22,7 @@ public class ListingBrowser {
 		if(listingbrowser == null) {
 			return new ListingBrowser();
 		}
-		
+		listingbrowser.readListings();
 		return listingbrowser;
 	}
 
@@ -26,7 +30,7 @@ public class ListingBrowser {
 	private ListingBrowser() {
 		this.count = 0;
 		this.listings = new ArrayList<Listing>();
-		
+		this.readListings();
 	}
 	
 	//**ADD TO UML**
@@ -46,31 +50,39 @@ public class ListingBrowser {
 		
 	}
 	
-/*
-	public Listing readListing() {
-  		for(JSONObject object : parse)
-			JSONParser parser = new JSONParser();
-			Listing listing = parser.parse(new FileReader("json/listing.json"));
-		JSONObject listingz = (JSONObject)listingz;
-
-				listing.setPrice((Integer) listingz.get("price"));
-				listing.setAddress((String) listingz.get("address"));
-				listing.setCapacity((Integer) listingz.get("capacity"));
-				listing.setId((Integer) listingz.get("id"));
-				listing.setDistance((Integer) listingz.get("distance"));
-				listing.setHousingType((String) listingz.get("housing type"));
-			listing.setAvailible((String) listingz.get("availible"));
-				listing.setDescription((String) listingz.get("description"));
-				
-				
-				Iterator iterator = review.iterator();
-				while (iterator.hasNext()) {
-			System.out.println(iterator.next());
-		}
+	
+	
+	public ArrayList<Listing> readListings() {
 		
+		ArrayList<Listing> returnListings = new ArrayList<Listing>();
+			
+			try {
+				JSONParser parser = new JSONParser();
+				JSONArray jsonlistings = (JSONArray) parser.parse(new FileReader("json/listing.json"));
+				
+				for(int i = 0; i < jsonlistings.size(); i++) {
+					JSONObject JSONlisting = (JSONObject)jsonlistings.get(i);
+					Listing listing = new Listing();
+					listing.setPrice((Integer) JSONlisting.get("price"));
+					listing.setAddress((String) JSONlisting.get("address"));
+					listing.setCapacity((Integer) JSONlisting.get("capacity"));
+					listing.setId((Integer) JSONlisting.get("id"));
+					listing.setDistance((Integer) JSONlisting.get("distance"));
+					listing.setHousingType((String) JSONlisting.get("housing type"));
+					listing.setBedrooms((Integer) JSONlisting.get("bedrooms"));
+					listing.setBaths((Integer) JSONlisting.get("baths"));
+					listing.setDescription((String) JSONlisting.get("description"));
+			
+			
+					}
+				} catch (IOException | ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		return returnListings;
 	} 
 	
-	*/
+	
 //count here is used to ensure that 5 listings are displayed a page.
 // Will hopefully continue through a steady line of all available listings
 // try-catch will break out of display when at the end of the list
