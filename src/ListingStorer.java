@@ -41,22 +41,28 @@ public class ListingStorer {
 	//read the listings from the JSON file
 	
 	public Listing readListing() {
-		JSONParser parser = new JSONParser();
+				JSONParser parser = new JSONParser();
 
-		
 		try {
-			Object o = jsonParser.parse(new FileReader("json/listing.json"));
-			JSONObject listing = (JSONObject)o;
-
-			Integer price = (Integer) listing.get("price");
-			String address = (String) listing.get("address");
-			Integer capacity = (Integer) listing.get("capacity");
-			Integer id = (Integer) listing.get("id");
-			Integer distance = (Integer) listing.get("distance");
-			String housingType = (String) listing.get("housing type");
-			String availible = (String) listing.get("availible");
-			String description = (String) listing.get("description");
-			JSONArray review = (JSONArray) listing.get("review");
+			FileReader reader = new FileReader("json/listing.json");
+			JSONParser parser = new JSONParser();
+			JSONArray listingJSON = (JSONArray)new JSONParser().parse(reader);
+			
+			for(int i=0; i < listingJSON.size(); i++) {
+				Integer price = (Integer) listingJSON.get("price");
+				String address = (String) listingJSON.get("address");
+				Integer capacity = (Integer) listingJSON.get("capacity");
+				Integer id = (Integer) listingJSON.get("id");
+				Integer distance = (Integer) listingJSON.get("distance");
+				String housingType = (String) listingJSON.get("housing type");
+				String availible = (String) listingJSON.get("availible");
+				String description = (String) listingJSON.get("description");
+				String review = (String) listingJSON.get("review");
+				
+				listing.add(new Listing(price, address, capacity, id, distance, housingType, availible, description, review));
+			}
+			
+			return listing;
 
 			System.out.println("Price: " + price);
 			System.out.println("Addresss: " + address);
@@ -71,10 +77,10 @@ public class ListingStorer {
 			Iterator iterator = review.iterator();
 			while (iterator.hasNext()) {
 				System.out.println(iterator.next());
-		}
+		
 		} catch(Exception e) {
-			e.printStackTrace;
-		}	
-	}
+			e.printStackTrace();
+		}
+		return null;
 	}
 }
