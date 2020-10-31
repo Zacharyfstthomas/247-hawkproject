@@ -51,7 +51,7 @@ public class LeaseAgreement extends Listing{
 	
 		try {
 		// this creates or overwrites the file input.txt in the local src folder
-			PrintWriter newFile = new PrintWriter(new FileOutputStream("input.txt"));
+			PrintWriter newFile = new PrintWriter(new FileOutputStream("LeaseAgreement.txt"));
 			Date date = new Date();
 		
 			newFile.println("This Lease Agreement is made and entered on "+ date.toString() +" by and between <LANDLOARD> and <TENANT(s)>.\r");
@@ -66,18 +66,19 @@ public class LeaseAgreement extends Listing{
 			newFile.println("7. Signatures\r");
 			newFile.println();
 			newFile.println("---------------------------");
-			newFile.println(mainStudent.getUserFullName()); // main tenant, aka current user initializing the lease
+		//	newFile.println(mainStudent.getUserFullName()); // main tenant, aka current user initializing the lease
 			
 		if(friendStudent != null) {
 			newFile.println();
 			newFile.println("---------------------------");
-			newFile.println(friendStudent.getUserFullName()); // account.name or somethin
+		//	newFile.println(friendStudent.getUserFullName()); // account.name or somethin
 		}
 		
 		newFile.println();
 		newFile.println("---------------------------");
-		newFile.println(landlord.getUserFullName()); 
+	//	newFile.println(landlord.getUserFullName()); 
 			newFile.close();
+			System.out.println("Lease Agreement Generated");
 		
 			} catch (Exception e) {
 				e.getMessage();

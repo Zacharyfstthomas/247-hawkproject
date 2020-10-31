@@ -112,10 +112,11 @@ public class SearchListings extends Search{
 	public ArrayList<Listing> findAmmenitiesMatches(String ammenity, ArrayList<Listing> listings){
 		ArrayList<Listing> returnArrList = new ArrayList<Listing>();
 		for(Listing listing : listings) {
+			if(listing.hasAmmenities()) {
 			if(listing.foundAmmenityMatch(ammenity)) {
 				returnArrList.add(listing);
 			}
-			
+			}
 			
 		}
 		return returnArrList;

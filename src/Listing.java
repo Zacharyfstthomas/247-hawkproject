@@ -101,9 +101,13 @@ public class Listing {
 	
 	
 	public void addAmmenity(String amenity){
-		this.amenities.add(amenity);
+		if(this.amenities == null) {
+			this.amenities = new ArrayList<String>();
+			this.amenities.add(amenity);
+		} else {
+			this.amenities.add(amenity);
+		}
 	}
-	
 	public String returnAmenities() {
 		
 		String returnstring = "";
@@ -171,6 +175,14 @@ public class Listing {
 		
 		
 		return false;
+	}
+
+
+	public boolean hasAmmenities() {
+		if(this.amenities == null) {
+			return false;
+	}
+		return true;
 	}
 
 	
