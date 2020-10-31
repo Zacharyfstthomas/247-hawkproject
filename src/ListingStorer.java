@@ -12,9 +12,30 @@ public class ListingStorer {
 	public ListingStorer(Listing listing) {}
 
 	//write new listings to the JSON file
-	public void writeListing() {
-
+	public static void writeListing() {
+		Listing listing = Listing.getInstance();
+		ArrayList<Listing> listings = listing.getListing();
+		JSONArray jsonListings = new JSONArray();
 		
+		for(int i=0; i<listings.size(); i++) {
+			jsonListings.add(getListingJSON(listings.get(i)));
+		}
+		
+		try(FileWriter file = new FileWriter(fileName****)) {
+			file.write(jsonListings.toJSONString());
+			file.flush();
+		}
+		catch(IOException e) {
+		e.printStackTrace();
+	}
+	}
+	
+	public static JSONObject getListingJSON(Listing listing) {
+		JSONObject listingDetails = new JSONObject();
+		listingDetails.put("600",listing.getPrice());
+		listingDetails.put("122 Street Ln",listing.getAddress());
+		listingDetails.put("3",listing.getCapacity());
+		listingDetails.put("10",listing.getId());
 	}
 
 	//read the listings from the JSON file
