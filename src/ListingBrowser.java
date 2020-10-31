@@ -74,6 +74,8 @@ public class ListingBrowser {
 //count here is used to ensure that 5 listings are displayed a page.
 // Will hopefully continue through a steady line of all available listings
 // try-catch will break out of display when at the end of the list
+	
+	// This displays the entire arrayList of Listings
 	public void display() {
 		do{
 			try {
@@ -109,7 +111,7 @@ public class ListingBrowser {
 		return null;
 	}
 	
-	// Potentially another display to display a custom amount 
+	// This displays an arrayList entered in, used more often than alone display
 	public void display(ArrayList<Listing> listings) {
 		if(listings == null) {
 			return;
@@ -117,8 +119,8 @@ public class ListingBrowser {
 		if(listings.size() == 0) {
 			System.out.println("No results found.");
 		}
+		System.out.println("Results:");
 		for(Listing listing : listings) {
-			System.out.println("Results:");
 			System.out.println("--------------- Listing " + (listing.getId()) + " ------------------");	
 			// returns list of ammenities if ammenities is not empty
 			if((listing.getAmmenitiesArrayList() != null) && (listing.getAmmenitiesSize() != 0)) {
