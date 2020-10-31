@@ -1,4 +1,5 @@
 
+
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -7,15 +8,14 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
-public class ListingStorer {
-
+public class ListingStorer{
+	
 	// This ideally is where we'd put the JSON reader/writer?
 	private Listing listing;
 	private int id;
-
+		
 	public ListingStorer(Listing listing) {}
-
-	//write new listings to the JSON file
+	
 	public static void writeListing() {
 		Listing listing = Listing.getInstance();
 		ArrayList<Listing> listings = listing.getListing();
@@ -43,7 +43,6 @@ public class ListingStorer {
 	}
 
 	//read the listings from the JSON file
-	
 	public Listing readListing() {
 				JSONParser parser = new JSONParser();
 
@@ -85,6 +84,6 @@ public class ListingStorer {
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
+	
 		return null;
-	}
 }
