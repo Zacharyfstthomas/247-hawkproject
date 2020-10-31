@@ -1,4 +1,5 @@
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -46,17 +47,55 @@ public class ListingBrowser {
 		Listing listing1 = new Listing(price, address, capacity,  bedrooms, baths, distance, housingType, avaliable, description);
 		listings.add(listing1);
 		listing1.setId(listings.size());
-		//TODO code here to write to JSON file.
+		this.writeListing();
+		
 	}
-	
+	// not sure if this is nessicary...
 	public void addListing(Listing listing) {
 		listings.add(listing);
-		// to be used by json reader.
 		
 	}
 	
 	
 	
+	private void writeListing() {
+		
+		JSONArray jsonListings = new JSONArray();
+		
+		//creating all the json objects
+		for(int i=0; i< listings.size(); i++) {
+			jsonListings.add(getListingJSON(listings.get(i)));
+		}
+		
+		//Write JSON file
+        try (FileWriter file = new FileWriter("src/listing.json")) {
+ 
+            file.write(jsonListings.toJSONString());
+            file.flush();
+ 
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+	}
+	
+	public static JSONObject getListingJSON(Listing listing) {
+		
+		JSONObject listingDetails = new JSONObject();
+		listingDetails.put("price", listing.getPrice());
+		listingDetails.put("address", listing.getAddress());
+		listingDetails.put("capacity", listing.getCapacity());
+		listingDetails.put("id", listing.getId());
+		listingDetails.put("distance", listing.getDistance());
+		listingDetails.put("housingType", listing.getHousingType());
+		listingDetails.put("bedrooms", listing.getBedrooms());
+		listingDetails.put("baths", listing.getBaths());
+		listingDetails.put("description", listing.getDescription());
+		listingDetails.put("available", listing.isAvaliable());
+		
+        return listingDetails;
+	}
+
+
 	public ArrayList<Listing> readListings() {
 		
 		ArrayList<Listing> returnListings = new ArrayList<Listing>();
@@ -69,11 +108,11 @@ public class ListingBrowser {
 				for(int i = 0; i < jsonlistings.size(); i++) {
 					JSONObject JSONlisting = (JSONObject)jsonlistings.get(i);
 					Listing listing = new Listing();
-					listing.setPrice((int) (long) JSONlisting.get("price"));
+					listing.setPrice((int) (double) JSONlisting.get("price"));
 					listing.setAddress((String) JSONlisting.get("address"));
 					listing.setCapacity((int) (long) JSONlisting.get("capacity"));
 					listing.setId((int) (long) JSONlisting.get("id"));
-					listing.setDistance((int) (long) JSONlisting.get("distance"));
+					listing.setDistance((int) (double) JSONlisting.get("distance"));
 					listing.setHousingType((String) JSONlisting.get("housing type"));
 					listing.setBedrooms((int) (long) JSONlisting.get("bedrooms"));
 					listing.setBaths((int) (long) JSONlisting.get("baths"));
