@@ -22,15 +22,20 @@ public class ListingBrowser {
 		if(listingbrowser == null) {
 			return new ListingBrowser();
 		}
-		listingbrowser.readListings();
+		listingbrowser.setListings();
 		return listingbrowser;
 	}
 
 	
+	private void setListings() {
+		this.listings = this.readListings();
+		
+	}
+
+
 	private ListingBrowser() {
 		this.count = 0;
-		this.listings = new ArrayList<Listing>();
-		this.readListings();
+		this.listings = this.readListings();
 	}
 	
 	//**ADD TO UML**
@@ -57,25 +62,29 @@ public class ListingBrowser {
 		ArrayList<Listing> returnListings = new ArrayList<Listing>();
 			
 			try {
+				FileReader reader = new FileReader("src/listing.json");
 				JSONParser parser = new JSONParser();
-				JSONArray jsonlistings = (JSONArray) parser.parse(new FileReader("json/listing.json"));
+				JSONArray jsonlistings = (JSONArray) parser.parse(reader);
 				
 				for(int i = 0; i < jsonlistings.size(); i++) {
 					JSONObject JSONlisting = (JSONObject)jsonlistings.get(i);
 					Listing listing = new Listing();
-					listing.setPrice((Integer) JSONlisting.get("price"));
+					listing.setPrice((int) (long) JSONlisting.get("price"));
 					listing.setAddress((String) JSONlisting.get("address"));
-					listing.setCapacity((Integer) JSONlisting.get("capacity"));
-					listing.setId((Integer) JSONlisting.get("id"));
-					listing.setDistance((Integer) JSONlisting.get("distance"));
+					listing.setCapacity((int) (long) JSONlisting.get("capacity"));
+					listing.setId((int) (long) JSONlisting.get("id"));
+					listing.setDistance((int) (long) JSONlisting.get("distance"));
 					listing.setHousingType((String) JSONlisting.get("housing type"));
-					listing.setBedrooms((Integer) JSONlisting.get("bedrooms"));
-					listing.setBaths((Integer) JSONlisting.get("baths"));
+					listing.setBedrooms((int) (long) JSONlisting.get("bedrooms"));
+					listing.setBaths((int) (long) JSONlisting.get("baths"));
 					listing.setDescription((String) JSONlisting.get("description"));
-			
-			
+					listing.setAvaliability((boolean) JSONlisting.get("available"));
+					//	listing.setAmmenities()
+					
+					returnListings.add(listing);
 					}
-				} catch (IOException | ParseException e) {
+				
+			} catch (IOException | ParseException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
@@ -92,6 +101,7 @@ public class ListingBrowser {
 		do{
 			try {
 				Listing listing = listings.get(count);
+				count++;
 				if(listing.isAvaliable()) {
 				System.out.println("--------------- Listing " + (listing.getId()) + " ------------------");	
 				if((listing.getAmmenitiesArrayList() != null) && (listing.getAmmenitiesSize() != 0)) {
@@ -102,7 +112,7 @@ public class ListingBrowser {
 				
 				System.out.println(listing.toString());
 					}	
-				count++;
+				
 			} } catch(IndexOutOfBoundsException e){
 				return;
 			}

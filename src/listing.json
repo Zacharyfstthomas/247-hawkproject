@@ -1,33 +1,36 @@
-{"listing" : [
+[
   {
     "price" : 500
     "address" : "200 Peachtree Ln"
     "capacity" : 3
-    "id" : 5
+    "id" : 1
     "distance" : 3
     "housingType" : "Townhome"
-    "available" : "Yes"
+    "bedrooms" : 2
+    "baths" : 2
+    "available" : true
     "description" : "Beautiful townhome located near Devine street. Close to campus and to Five Points."
-    "ammenities" : "None"
   },{
     "price" : 1280
     "address" : "1929 Bluff Rd Unit 180"
     "capacity" : 5
-    "id" : 6
+    "id" : 2
     "distance" : 6
     "housingType" : "House"
-    "available" : "Yes"
+    "bedrooms" : 2
+    "baths" : 2
+    "available" : true
     "description" : "Five person house in a student community located near Williams Brice and short drive to campus."
-    "ammenities" : "None"
   },{
     "price" : 875
     "address" : "800 Barnwell Unit 656"
     "capacity" : 2
-    "id" : 7
+    "id" : 3
     "distance" : 1
+    "available" : true
     "housingType" : "Apartment"
-    "available" : "Yes"
+    "bedrooms" : 2
+    "baths" : 2
     "description" : "Quaint apartment located in the heart of Columbia with close proximity to the Vista and campus!"
-    "ammenities" : "None"
   }
-]}
+]

@@ -49,6 +49,15 @@ public class Listing {
 	public void setPrice(double price) {
 		this.price = price;
 	}
+	
+	public void setAvaliability(boolean avaliable) {
+		
+		this.avaliable = avaliable;
+	}
+	
+	public void setAmmenities(double price) {
+		this.price = price;
+	}
 
 	public String getAddress() {
 		return address;

@@ -54,7 +54,7 @@ public class HousingDriver {
 			
 			listings.addListing(40, "453 Gervais St", 4, 2, 2, 0.5, "house", true, "mediocre");
 			listings.addListing(40, "753 Gervais St", 6, 3, 2, 0.75, "house", true, "shabby");
-			listings.getListing(1).addAmmenity("clownworld");
+			//listings.getListing(1).addAmmenity("clownworld");
 		
 			
 			
