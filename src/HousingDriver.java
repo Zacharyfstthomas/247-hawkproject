@@ -1,5 +1,6 @@
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 public class HousingDriver {
 
 	//ideally to be used to log into an account, and register new accounts.
@@ -48,6 +49,7 @@ public class HousingDriver {
 			Scanner input = new Scanner(System.in);
 			ListingBrowser listings = ListingBrowser.getInstance();
 			SearchListings find = new SearchListings();
+			
 		//ListingStorer listingmanager = new ListingStorer();
 //							price address am. available, 2 bed 2 bath, distance, type, available(boolean), description
 			
@@ -96,6 +98,37 @@ public class HousingDriver {
 			
 			
 		
+			}
+			
+			System.out.println("Would you like to produce a lease agreement for a lisitng?");
+			 choice = input.nextLine();
+			if(choice.equalsIgnoreCase("yes") || choice.equalsIgnoreCase("y")){
+				System.out.println("Which lease are you interested in? Choose them using their number.");
+				int IDchoice = -1;
+				try {
+				IDchoice = input.nextInt();
+				} catch (InputMismatchException e) {
+					System.out.println("Invalid input, ignoring.");
+				}
+				 
+				for(Listing listing : listings.listings) {
+					if(listing.getId() == IDchoice){
+						LeaseAgreement leaseSign = new LeaseAgreement(listing);
+						System.out.println("Excellent choice! We just need a few things from you.");
+						System.out.println("What is the zipcode of the address?");
+						String answer = input.nextLine();
+						leaseSign.setAddress(answer);
+						System.out.println("When do you plan to begin the lease?");
+						answer = input.nextLine();
+						leaseSign.setLeaseStart(answer);
+						System.out.println("When do you plan to end the lease?");
+						answer = input.nextLine();
+						leaseSign.setLeaseEnd(answer);
+					}
+				}
+				
+				System.out.println("That listing was not found.");
+				
 			}
 			
 			

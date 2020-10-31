@@ -3,21 +3,20 @@ public class Account {
 	protected String accountName;
 	protected String userFullName;
 	protected int dob;
-	protected String emailAddress;
+	protected String address;
 	protected int phoneNumber;
 	protected String userName;
 	protected String password;
-	protected Review reviews;
+
 	
-	public Account(String accountName, String userFullName, int dob, String emailAddress, int phoneNumber, String userName, String password, Review reviews) {
+	public Account(String accountName, String userFullName, int dob, String address, int phoneNumber, String userName, String password) {
 		this.accountName = accountName;
 		this.userFullName = userFullName;
 		this.dob = dob;
-		this.emailAddress = emailAddress;
+		this.address = address;
 		this.phoneNumber = phoneNumber;
 		this.userName = userName;
 		this.password = password;
-		this.reviews = reviews;
 	}
 	
 	public void viewPage() {}
@@ -48,12 +47,12 @@ public class Account {
 		this.dob = dob;
 	}
 
-	public String getEmailAddress() {
-		return emailAddress;
+	public String getaddress() {
+		return address;
 	}
 
-	public void setEmailAddress(String emailAddress) {
-		this.emailAddress = emailAddress;
+	public void setaddress(String address) {
+		this.address = address;
 	}
 
 	public int getPhoneNumber() {
@@ -80,13 +79,6 @@ public class Account {
 		this.password = password;
 	}
 
-	public Review getReviews() {
-		return reviews;
-	}
-
-	public void setReviews(Review reviews) {
-		this.reviews = reviews;
-	}
 	
 	
 	

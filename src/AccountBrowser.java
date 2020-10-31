@@ -18,8 +18,8 @@ public class AccountBrowser {
 		this.accounts = new ArrayList<Account>();
 	}
 	
-	public void addAccount(String accountName, String userFullName, int dob, String emailAddress, int phoneNumber, String userName, String password, Review reviews) {
-		Account account1 = new Account(accountName, userFullName, dob, emailAddress, phoneNumber, userName, password, reviews);
+	public void addAccount(String accountName, String userFullName, int dob, String address, int phoneNumber, String userName, String password) {
+		Account account1 = new Account(accountName, userFullName, dob, address, phoneNumber, userName, password);
 		accounts.add(account1);
 	}
 }
