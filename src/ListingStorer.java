@@ -52,6 +52,16 @@ public class ListingStorer {
 		listingDetails.put("baths", listing.getBaths());
 		listingDetails.put("description", listing.getDescription());
 		listingDetails.put("available", listing.isAvaliable());
+		listingDetails.put("hasAmmenities", listing.hasAmmenities());
+		listingDetails.put("amountAmmenities", listing.getAmmenitiesSize());
+		if(listing.hasAmmenities()) {
+			
+			ArrayList<String> ammenities = listing.getAmmenitiesArrayList();
+			
+			for(int i = 0; i < ammenities.size(); i++) {
+				listingDetails.put("ammenity " + i, ammenities.get(i));
+			}
+		}
 		
         return listingDetails;
 	}
@@ -68,17 +78,25 @@ public class ListingStorer {
 				for(int i = 0; i < jsonlistings.size(); i++) {
 					JSONObject JSONlisting = (JSONObject)jsonlistings.get(i);
 					Listing listing = new Listing();
-					listing.setPrice((int) (double) JSONlisting.get("price"));
+					listing.setPrice((double) JSONlisting.get("price"));
 					listing.setAddress((String) JSONlisting.get("address"));
 					listing.setCapacity((int) (long) JSONlisting.get("capacity"));
 					listing.setId((int) (long) JSONlisting.get("id"));
-					listing.setDistance((int) (double) JSONlisting.get("distance"));
-					listing.setHousingType((String) JSONlisting.get("housing type"));
+					listing.setDistance((double) JSONlisting.get("distance"));
+					listing.setHousingType((String) JSONlisting.get("housingType"));
 					listing.setBedrooms((int) (long) JSONlisting.get("bedrooms"));
 					listing.setBaths((int) (long) JSONlisting.get("baths"));
 					listing.setDescription((String) JSONlisting.get("description"));
 					listing.setAvaliability((boolean) JSONlisting.get("available"));
-					//	listing.setAmmenities()
+					listing.setHasAmmenities((boolean) JSONlisting.get("hasAmmenities"));
+					int amountAmmenities = ((int)(long) JSONlisting.get("amountAmmenities"));
+					if(listing.hasAmmenities()) {
+						listing.createAmmenitiesArrayList();
+						for(int j = 0; j < amountAmmenities; j++) {
+							listing.addAmmenity((String) JSONlisting.get("ammenity " + j));
+							
+						}
+					}
 					
 					returnListings.add(listing);
 					}

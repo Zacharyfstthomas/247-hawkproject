@@ -42,10 +42,12 @@ public class AccountBrowser {
 	
 	public void addAccount(Account account) {
 		accounts.add(account);
+		this.writeAccounts();
 	}
 	
 	public void addAccount(String accountName, String userFullName, String dob, String address, String phoneNumber, String userName, String password) {
 		Account account1 = new Account(accountName, userFullName, dob, address, phoneNumber, userName, password);
 		accounts.add(account1);
+		this.writeAccounts();
 	}
 }

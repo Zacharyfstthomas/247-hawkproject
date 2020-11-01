@@ -13,6 +13,7 @@ public class HousingDriver {
 	public void promptAccount() {
 		Scanner input = new Scanner(System.in);
 		AccountBrowser accounts = AccountBrowser.getInstance();
+		accounts.readAccounts();
 		System.out.println("Welcome back! Do you have an account with us?");
 		String choice = input.nextLine();
 		
@@ -29,12 +30,14 @@ public class HousingDriver {
 				if(account.getUserName().equals(username) && account.getPassword().equals(password)) {
 					accFlag = true;
 					loggedIn = true;
-					
+					tryagain = false;
+					System.out.println("Login successful.");
 				} 
 			}
 			
 			if(!accFlag) {
 				System.out.println("Incorrect username/password. Try again?");
+				choice = input.nextLine();
 				if(choice.equalsIgnoreCase("no") || choice.equalsIgnoreCase("n")) {
 					tryagain = false;
 					}
@@ -65,7 +68,10 @@ public class HousingDriver {
 				
 				
 				accounts.addAccount(accountName, userFullName, dob, address, phoneNumber, userName, password);
+				loggedIn = true;
 				//Other account details will be added here.
+				System.out.println("Account successfully created. Press enter to continue");
+				input.nextLine();
 			} 
 				
 			return;
@@ -104,8 +110,63 @@ public class HousingDriver {
 			
 			listings.display();
 	
-		
-		
+			if(loggedIn) {
+				ArrayList<String> driverammenities = new ArrayList<String>();
+				System.out.println("Would you like to add a listing?");
+				String choice = input.nextLine();
+				if(choice.equalsIgnoreCase("yes") || choice.equalsIgnoreCase("y")){
+					System.out.println("Excellent!");
+					
+					System.out.println("Enter the listing's price:");
+					double price = Double.parseDouble(input.nextLine());
+					System.out.println("Enter the listing's address:");
+					String address = input.nextLine();
+					System.out.println("Enter the listing's distance from campus:");
+					double distance = Double.parseDouble(input.nextLine());
+					System.out.println("Enter amount of availabilities at the listing");
+					int capacity = Integer.parseInt(input.nextLine());
+					System.out.println("Enter the type of listing (house, apartment, ect.):");
+					String housingType = input.nextLine();
+					System.out.println("Enter amount of bedrooms at the listing");
+					int bedrooms = Integer.parseInt(input.nextLine());
+					System.out.println("Enter amount of bathrooms at the listing");
+					int baths= Integer.parseInt(input.nextLine());
+					System.out.println("Enter the listing's description:");
+					String description= input.nextLine();
+					
+					System.out.println("Does the listing have ammenities? :");
+					boolean hasAmmenties = false;
+					choice = input.nextLine();
+					if(choice.equalsIgnoreCase("yes") || choice.equalsIgnoreCase("y")){
+							hasAmmenties = true;
+							
+							System.out.println("Enter the ammenties you want to add, type \"done\" when finished.");
+							
+							while(true){
+								
+								String ammenity = input.nextLine();
+								driverammenities.add(ammenity);
+								if(ammenity.equalsIgnoreCase("done")) {
+									break;
+								}
+							}
+							
+								
+						}
+					
+					Listing listing = new Listing(price, address, capacity, bedrooms, baths, distance, housingType, true, description);
+					if(hasAmmenties) {
+							listing.createAmmenitiesArrayList();
+							for(String ammenity : driverammenities) {
+									listing.addAmmenity(ammenity);
+							}
+							
+							
+						}
+					
+					listings.addListing(listing);
+				}
+			}
 		
 			System.out.println("Would you like to search for a specific listing?");
 			String choice = input.nextLine();
@@ -173,7 +234,8 @@ public class HousingDriver {
 						answer = input.nextLine();
 						leaseSign.setLeaseEnd(answer);
 						leaseSign.writeLeaseAgreement(null, null, null);
-						//absolute bugtesting
+						System.out.println("Successfully generated a lease agreement.");
+					//	listing.setAvaliability(false);
 					}
 				}
 				if(!foundFlag) {
@@ -187,6 +249,7 @@ public class HousingDriver {
 			System.out.println("Continue?");
 			String exitchoice = input.nextLine();
 			if(exitchoice.equals("no")){
+				listings.writeListings();
 				System.exit(0);
 			}
 			

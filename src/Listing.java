@@ -12,6 +12,7 @@ public class Listing {
 	private int baths;
 	private String description;
 	private ArrayList<String> amenities;
+	private int amountAmmenities;
 	
 		public Listing() {
 			// as of now, not to be callled\\ 
@@ -28,12 +29,15 @@ public class Listing {
 			this.housingType = housingType;
 			this.avaliable = avaliable;
 			this.description = description;
-			this.amenities = new ArrayList<String>();
 	}
 	
 	public void storeListing() {
 		
 		
+	}
+	
+	public void createAmmenitiesArrayList() {
+		this.amenities = new ArrayList<String>();		
 	}
 	
 	public void toggleAvaliability() {
@@ -55,9 +59,9 @@ public class Listing {
 		this.avaliable = avaliable;
 	}
 	
-	public void setAmmenities(double price) {
-		this.price = price;
-	}
+	//public void setAmmenities() {
+	//	this.price = price;
+	//}
 
 	public String getAddress() {
 		return address;
@@ -89,6 +93,10 @@ public class Listing {
 	}
 	
 	public int getAmmenitiesSize() {
+		
+		if(this.amenities == null) {
+			return 0;
+		}
 		
 		return this.amenities.size();
 	}
@@ -184,6 +192,16 @@ public class Listing {
 	}
 		return true;
 	}
+
+
+	public void setHasAmmenities(boolean hasAmmenities) {
+		if(hasAmmenities) {
+			this.amenities = new ArrayList<String>();
+		}
+		
+		
+	}
+
 
 	
 	

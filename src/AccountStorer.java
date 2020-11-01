@@ -8,6 +8,8 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.*;
 
+
+
 public class AccountStorer {
 	
 
@@ -21,6 +23,7 @@ public class AccountStorer {
 	
 
 	public void writeAccounts(ArrayList<Account> accounts) {
+	
 		JSONArray jsonaccounts = new JSONArray();
 		
 		//creating all the json objects
@@ -48,12 +51,14 @@ public class AccountStorer {
 		accountDetails.put("password", account.getPassword());
 		accountDetails.put("dob", account.getDob());
 		accountDetails.put("phoneNumber", account.getPhoneNumber());
-
+		
+		
         return accountDetails;
 	}
 
 
 	public ArrayList<Account> readAccounts() {
+		
 		ArrayList<Account> returnAccounts = new ArrayList<Account>();
 			
 			try {
@@ -64,12 +69,12 @@ public class AccountStorer {
 				for(int i = 0; i < jsonaccounts.size(); i++) {
 					JSONObject JSONaccount = (JSONObject)jsonaccounts.get(i);
 					Account account = new Account();
-					account.setAccountName((String) JSONaccount.get("price"));
-					account.setUserFullName((String) JSONaccount.get("address"));
-					account.setUserName((String) JSONaccount.get("capacity"));
-					account.setPassword((String) JSONaccount.get("id"));
-					account.setDob((String) JSONaccount.get("distance"));
-					account.setPhoneNumber((String) JSONaccount.get("housing type"));
+					account.setAccountName((String) JSONaccount.get("accountName"));
+					account.setUserFullName((String) JSONaccount.get("fullName"));
+					account.setUserName((String) JSONaccount.get("username"));
+					account.setPassword((String) JSONaccount.get("password"));
+					account.setDob((String) JSONaccount.get("dob"));
+					account.setPhoneNumber((String) JSONaccount.get("phoneNumber"));
 
 					
 					returnAccounts.add(account);

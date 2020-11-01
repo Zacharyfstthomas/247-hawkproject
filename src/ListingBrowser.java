@@ -36,6 +36,7 @@ public class ListingBrowser {
 	// not sure if this is nessicary...
 	public void addListing(Listing listing) {
 		listings.add(listing);
+		listing.setId(listings.size());
 		
 	}
 	
@@ -74,7 +75,7 @@ public class ListingBrowser {
 			} } catch(IndexOutOfBoundsException e){
 				return;
 			}
-		}while(count % 5  != 0);
+		}while(count % 10  != 0);
 		
 		
 		
@@ -112,12 +113,7 @@ public class ListingBrowser {
 			}
 		}
 	}
-	
-	//is this nessicary?
-	public void pageForward() {
-		
-	
-	}
+
 	
 	public int getCount() {
 		
