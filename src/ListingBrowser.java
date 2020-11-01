@@ -26,8 +26,8 @@ public class ListingBrowser {
 
 	//As of now, used for adding default listings.
 	//Likely will be used for the other accounts as well.
-	public void addListing(double price, String address, int capacity, int bedrooms, int baths, double distance, String housingType, boolean avaliable, String description) {
-		Listing listing1 = new Listing(price, address, capacity,  bedrooms, baths, distance, housingType, avaliable, description);
+	public void addListing(double price, String address, int capacity, int bedrooms, int baths, double distance, String housingType, boolean avaliable, String description, String owner) {
+		Listing listing1 = new Listing(price, address, capacity,  bedrooms, baths, distance, housingType, avaliable, description, owner);
 		listings.add(listing1);
 		listing1.setId(listings.size());
 		

@@ -117,28 +117,88 @@ public class HousingDriver {
 				if(choice.equalsIgnoreCase("yes") || choice.equalsIgnoreCase("y")){
 					System.out.println("Excellent!");
 					
-					System.out.println("Enter the listing's price:");
-					double price = Double.parseDouble(input.nextLine());
-					System.out.println("Enter the listing's address:");
-					String address = input.nextLine();
-					System.out.println("Enter the listing's distance from campus:");
-					double distance = Double.parseDouble(input.nextLine());
-					System.out.println("Enter amount of availabilities at the listing");
-					int capacity = Integer.parseInt(input.nextLine());
-					System.out.println("Enter the type of listing (house, apartment, ect.):");
-					String housingType = input.nextLine();
-					System.out.println("Enter amount of bedrooms at the listing");
-					int bedrooms = Integer.parseInt(input.nextLine());
-					System.out.println("Enter amount of bathrooms at the listing");
-					int baths= Integer.parseInt(input.nextLine());
-					System.out.println("Enter the listing's description:");
-					String description= input.nextLine();
+					System.out.println("Are you creating a complex?");
+						choice = input.nextLine();
+						if(choice.equalsIgnoreCase("yes") || choice.equalsIgnoreCase("y")){
+								System.out.println("How many suites are you adding?");
+								int suites = Integer.parseInt(input.nextLine());
+								System.out.println("Enter the suite's distance from campus:");
+								double price = Double.parseDouble(input.nextLine());
+								System.out.println("Enter the suite's address:");
+								String address = input.nextLine();
+								System.out.println("Enter the suite's distance from campus:");
+								double distance = Double.parseDouble(input.nextLine());
+								System.out.println("Enter the type of suites:");
+								String housingType = input.nextLine();
+								System.out.println("Does the suite have ammenities? :");
+								boolean hasAmmenties = false;
+								choice = input.nextLine();
+								if(choice.equalsIgnoreCase("yes") || choice.equalsIgnoreCase("y")){
+										hasAmmenties = true;
+										
+										System.out.println("Enter the ammenties you want to add, type \"done\" when finished.");
+										
+										while(true){
+											
+											String ammenity = input.nextLine();
+											driverammenities.add(ammenity);
+											if(ammenity.equalsIgnoreCase("done")) {
+												break;
+											}
+										}
+										
+											
+									}
+								
+								
+								for(int i = 0; i < suites; i++){
+									System.out.println("Enter suite "+i+"'s availabilities:");
+									int capacity = Integer.parseInt(input.nextLine());
+									System.out.println("Enter amount of bedrooms at the listing");
+									int bedrooms = Integer.parseInt(input.nextLine());
+									System.out.println("Enter amount of bathrooms at the listing");
+									int baths= Integer.parseInt(input.nextLine());
+									System.out.println("Enter the listing's description:");
+									String description= input.nextLine();
+									System.out.println("Enter your account name:");
+									String owner = input.nextLine(); 
+									Listing listing = new Listing(price, address, capacity, bedrooms, baths, distance, housingType, true, description, owner);
+									listings.addListing(listing);
+									if(driverammenities.size() != 0){
+										for(String ammenity : driverammenities) {
+											listing.addAmmenity(ammenity);
+										}
+										
+									}
+									
+								}
+									
+						}else {
 					
-					System.out.println("Does the listing have ammenities? :");
-					boolean hasAmmenties = false;
-					choice = input.nextLine();
-					if(choice.equalsIgnoreCase("yes") || choice.equalsIgnoreCase("y")){
-							hasAmmenties = true;
+							System.out.println("Enter the listing's price:");
+							double price = Double.parseDouble(input.nextLine());
+							System.out.println("Enter the listing's address:");
+							String address = input.nextLine();
+							System.out.println("Enter the listing's distance from campus:");
+							double distance = Double.parseDouble(input.nextLine());
+							System.out.println("Enter amount of availabilities at the listing");
+							int capacity = Integer.parseInt(input.nextLine());
+							System.out.println("Enter the type of listing (house, apartment, ect.):");
+							String housingType = input.nextLine();
+							System.out.println("Enter amount of bedrooms at the listing");
+							int bedrooms = Integer.parseInt(input.nextLine());
+							System.out.println("Enter amount of bathrooms at the listing");
+							int baths= Integer.parseInt(input.nextLine());
+							System.out.println("Enter the listing's description:");
+							String description= input.nextLine();
+							System.out.println("Enter your account name:");
+							String owner = input.nextLine(); 
+							
+							System.out.println("Does the listing have ammenities?");
+							boolean hasAmmenties = false;
+							choice = input.nextLine();
+							if(choice.equalsIgnoreCase("yes") || choice.equalsIgnoreCase("y")){
+								hasAmmenties = true;
 							
 							System.out.println("Enter the ammenties you want to add, type \"done\" when finished.");
 							
@@ -154,17 +214,18 @@ public class HousingDriver {
 								
 						}
 					
-					Listing listing = new Listing(price, address, capacity, bedrooms, baths, distance, housingType, true, description);
+					Listing listing = new Listing(price, address, capacity, bedrooms, baths, distance, housingType, true, description,owner);
 					if(hasAmmenties) {
 							listing.createAmmenitiesArrayList();
 							for(String ammenity : driverammenities) {
 									listing.addAmmenity(ammenity);
+								}
+							
+							
 							}
-							
-							
-						}
 					
-					listings.addListing(listing);
+						listings.addListing(listing);
+					}
 				}
 			}
 		
@@ -210,6 +271,8 @@ public class HousingDriver {
 				if(!loggedIn) {
 					System.out.println("You need to log in to produce a lease agreeement");
 				} else {
+					AccountBrowser accounts = AccountBrowser.getInstance();
+					accounts.readAccounts();
 				System.out.println("Which lease are you interested in? Choose them using their number.");
 				int IDchoice = -1;
 				try {
@@ -233,9 +296,33 @@ public class HousingDriver {
 						System.out.println("When do you plan to end the lease?");
 						answer = input.nextLine();
 						leaseSign.setLeaseEnd(answer);
-						leaseSign.writeLeaseAgreement(null, null, null);
-						System.out.println("Successfully generated a lease agreement.");
-					//	listing.setAvaliability(false);
+						System.out.println("Are you signing with someone else?");
+						answer = input.nextLine();
+						if(answer.equalsIgnoreCase("yes") || answer.equalsIgnoreCase("y")) {
+							System.out.println("Enter their account name");
+							String friendAccountName = input.nextLine();
+							System.out.println("Enter your account name");
+							String accountName = input.nextLine(); 
+							System.out.println("Enter the owner's account name");
+							String landLordAccountName = input.nextLine();
+						try {
+							leaseSign.writeLeaseAgreement(accounts.getAccount(accountName), accounts.getAccount(friendAccountName), accounts.getAccount(landLordAccountName));
+							
+							} catch (NullPointerException e) {
+								System.out.println("One of those accounts wasn't found. The lease agreement was not generated.");
+							}
+						} else {
+							System.out.println("Enter your account name");
+							String accountName = input.nextLine(); 
+							System.out.println("Enter the owner's account name");
+							String landLordAccountName = input.nextLine();
+						try {
+							leaseSign.writeLeaseAgreement(accounts.getAccount(accountName), null, accounts.getAccount(landLordAccountName));
+							
+							}catch (NullPointerException e) {
+								System.out.println("One of those accounts wasn't found. The lease agreement was not generated.");
+							}	
+						}//	listing.setAvaliability(false);
 					}
 				}
 				if(!foundFlag) {

@@ -54,34 +54,34 @@ public class LeaseAgreement extends Listing{
 			PrintWriter newFile = new PrintWriter(new FileOutputStream("LeaseAgreement.txt"));
 			Date date = new Date();
 		
-			newFile.println("This Lease Agreement is made and entered on "+ date.toString() +" by and between <LANDLOARD> and <TENANT(s)>.\r");
+			newFile.println("This Lease Agreement is made and entered on "+ date.toString() +" by and between "+mainStudent.getUserFullName()+" and "+mainStudent.getUserFullName()+".\r");
 			newFile.println("Subject to the terms and conditions stated below the parties agree as follows:\r");
 			newFile.println("1. Landloard Tenant Act. This Rental Agreement is governed by the South Carolina Residential Landlord and Tenant Act.\r");
 			newFile.println("2. Property. Landloard, in consideration of the lease payments provided in this agreement, leases to Tenant a house with " + listing.getBedrooms() + " bedrooms and " + listing.getBedrooms() + " bathrooms, located at " + listing.getAddress() + ", South Carolina "+ this.zipcode+". No other portion of the building wherein the Property is located is included unless expressly provided for in this agreement.\r"); 
 				
 			newFile.println("3. Term. The Tenant will coninue to pay rent from "+this.leaseStart+" to "+this.leaseStart+".\r");
 			newFile.println("4. Rent. The Tenant will pay $"+listing.getPrice()+" each month on the first of the month.\r");
-			newFile.println("5. Payment should be sent to:<PAYMENT ADDRESS>\r"); //landlord account address
+			newFile.println("5. Payment should be sent to:"+landlord.getaddress()+"\r"); //landlord account address
 			newFile.println("6. Damages. Charges will be billed to the client for damaged property.\r"); 
 			newFile.println("7. Signatures\r");
 			newFile.println();
 			newFile.println("---------------------------");
-		//	newFile.println(mainStudent.getUserFullName()); // main tenant, aka current user initializing the lease
+			newFile.println(mainStudent.getUserFullName()); // main tenant, aka current user initializing the lease
 			
 		if(friendStudent != null) {
 			newFile.println();
 			newFile.println("---------------------------");
-		//	newFile.println(friendStudent.getUserFullName()); // account.name or somethin
+			newFile.println(friendStudent.getUserFullName()); 
 		}
 		
 		newFile.println();
 		newFile.println("---------------------------");
-	//	newFile.println(landlord.getUserFullName()); 
+		newFile.println(landlord.getUserFullName()); 
 			newFile.close();
 			System.out.println("Lease Agreement Generated");
 		
 			} catch (Exception e) {
-				e.getMessage();
+				System.out.println(e.getMessage());
 		
 			}
 	

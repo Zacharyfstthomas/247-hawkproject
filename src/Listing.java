@@ -11,6 +11,7 @@ public class Listing {
 	private int bedrooms;
 	private int baths;
 	private String description;
+	private String owner;
 	private ArrayList<String> amenities;
 	private int amountAmmenities;
 	
@@ -19,7 +20,7 @@ public class Listing {
 			}
 	
 	
-	public Listing(double price, String address, int capacity, int bedrooms, int baths, double distance, String housingType, boolean avaliable, String description) {
+	public Listing(double price, String address, int capacity, int bedrooms, int baths, double distance, String housingType, boolean avaliable, String description, String owner) {
 			this.price = price;
 			this.address = address;
 			this.capacity = capacity;
@@ -29,12 +30,17 @@ public class Listing {
 			this.housingType = housingType;
 			this.avaliable = avaliable;
 			this.description = description;
+			this.owner = owner;
 	}
 	
-	public void storeListing() {
-		
-		
+	public void setOwner(String owner) {
+		this.owner = owner;
 	}
+	
+	public String getOwner() {
+		return this.owner;
+	}
+	
 	
 	public void createAmmenitiesArrayList() {
 		this.amenities = new ArrayList<String>();		
@@ -103,7 +109,7 @@ public class Listing {
 	
 	public String toString() {
 		
-		return this.address + "\nAmount Avaliable: " + this.capacity + "\nDistance from Campus: " + this.distance + "\nHousing Type: " + this.housingType + "\nBedrooms: "+ this.bedrooms + "\nBaths: " + this.baths + "\nDescription: " + this.description + "\nPrice: " + this.price;
+		return this.address + "\nAmount Avaliable: " + this.capacity + "\nDistance from Campus: " + this.distance + "\nHousing Type: " + this.housingType + "\nBedrooms: "+ this.bedrooms + "\nBaths: " + this.baths + "\nDescription: " + this.description + "\nPrice: " + this.price + "\nOwner: " + this.owner;
 	}
 	
 	

@@ -54,6 +54,7 @@ public class ListingStorer {
 		listingDetails.put("available", listing.isAvaliable());
 		listingDetails.put("hasAmmenities", listing.hasAmmenities());
 		listingDetails.put("amountAmmenities", listing.getAmmenitiesSize());
+		listingDetails.put("owner", listing.getOwner());
 		if(listing.hasAmmenities()) {
 			
 			ArrayList<String> ammenities = listing.getAmmenitiesArrayList();
@@ -89,6 +90,7 @@ public class ListingStorer {
 					listing.setDescription((String) JSONlisting.get("description"));
 					listing.setAvaliability((boolean) JSONlisting.get("available"));
 					listing.setHasAmmenities((boolean) JSONlisting.get("hasAmmenities"));
+					listing.setOwner((String) JSONlisting.get("owner"));
 					int amountAmmenities = ((int)(long) JSONlisting.get("amountAmmenities"));
 					if(listing.hasAmmenities()) {
 						listing.createAmmenitiesArrayList();

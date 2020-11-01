@@ -46,6 +46,7 @@ public class AccountStorer {
 		
 		JSONObject accountDetails = new JSONObject();
 		accountDetails.put("accountName", account.getAccountName());
+		accountDetails.put("address", account.getaddress());
 		accountDetails.put("fullName", account.getUserFullName());
 		accountDetails.put("username", account.getUserName());
 		accountDetails.put("password", account.getPassword());
@@ -71,6 +72,7 @@ public class AccountStorer {
 					Account account = new Account();
 					account.setAccountName((String) JSONaccount.get("accountName"));
 					account.setUserFullName((String) JSONaccount.get("fullName"));
+					account.setaddress((String) JSONaccount.get("address"));
 					account.setUserName((String) JSONaccount.get("username"));
 					account.setPassword((String) JSONaccount.get("password"));
 					account.setDob((String) JSONaccount.get("dob"));
