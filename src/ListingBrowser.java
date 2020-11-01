@@ -28,16 +28,16 @@ public class ListingBrowser {
 	//Likely will be used for the other accounts as well.
 	public void addListing(double price, String address, int capacity, int bedrooms, int baths, double distance, String housingType, boolean avaliable, String description, String owner) {
 		Listing listing1 = new Listing(price, address, capacity,  bedrooms, baths, distance, housingType, avaliable, description, owner);
-		listings.add(listing1);
+		this.listings.add(listing1);
 		listing1.setId(listings.size());
-		
+		this.writeListings();
 		
 	}
 	// not sure if this is nessicary...
 	public void addListing(Listing listing) {
-		listings.add(listing);
+		this.listings.add(listing);
 		listing.setId(listings.size());
-		
+		this.writeListings();
 	}
 	
 	public void writeListings(){
@@ -75,7 +75,7 @@ public class ListingBrowser {
 			} } catch(IndexOutOfBoundsException e){
 				return;
 			}
-		}while(count % 10  != 0);
+		}while(count % 25  != 0);
 		
 		
 		

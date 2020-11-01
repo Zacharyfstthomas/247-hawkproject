@@ -104,7 +104,7 @@ public class HousingDriver {
 		//	listings.addListing(40, "753 Gervais St", 6, 3, 2, 0.75, "house", true, "shabby");
 			
 			
-			listings.getListing(1).addAmmenity("clownworld");
+		//	listings.getListing(1).addAmmenity("clownworld");
 		
 			
 			
@@ -122,15 +122,13 @@ public class HousingDriver {
 						if(choice.equalsIgnoreCase("yes") || choice.equalsIgnoreCase("y")){
 								System.out.println("How many suites are you adding?");
 								int suites = Integer.parseInt(input.nextLine());
-								System.out.println("Enter the suite's distance from campus:");
-								double price = Double.parseDouble(input.nextLine());
-								System.out.println("Enter the suite's address:");
+								System.out.println("Enter the complex's address:");
 								String address = input.nextLine();
-								System.out.println("Enter the suite's distance from campus:");
+								System.out.println("Enter the complex's distance from campus:");
 								double distance = Double.parseDouble(input.nextLine());
 								System.out.println("Enter the type of suites:");
 								String housingType = input.nextLine();
-								System.out.println("Does the suite have ammenities? :");
+								System.out.println("Does the complex have ammenities? :");
 								boolean hasAmmenties = false;
 								choice = input.nextLine();
 								if(choice.equalsIgnoreCase("yes") || choice.equalsIgnoreCase("y")){
@@ -152,12 +150,14 @@ public class HousingDriver {
 								
 								
 								for(int i = 0; i < suites; i++){
-									System.out.println("Enter suite "+i+"'s availabilities:");
+									System.out.println("Enter suite "+(i+1)+"'s availabilities:");
 									int capacity = Integer.parseInt(input.nextLine());
-									System.out.println("Enter amount of bedrooms at the listing");
+									System.out.println("Enter amount of bedrooms at the suite");
 									int bedrooms = Integer.parseInt(input.nextLine());
-									System.out.println("Enter amount of bathrooms at the listing");
+									System.out.println("Enter amount of bathrooms at the suite");
 									int baths= Integer.parseInt(input.nextLine());
+									System.out.println("Enter the suite's price per month:");
+									double price = Double.parseDouble(input.nextLine());
 									System.out.println("Enter the listing's description:");
 									String description= input.nextLine();
 									System.out.println("Enter your account name:");
@@ -175,13 +175,13 @@ public class HousingDriver {
 									
 						}else {
 					
-							System.out.println("Enter the listing's price:");
+							System.out.println("Enter the listing's price per month:");
 							double price = Double.parseDouble(input.nextLine());
 							System.out.println("Enter the listing's address:");
 							String address = input.nextLine();
 							System.out.println("Enter the listing's distance from campus:");
 							double distance = Double.parseDouble(input.nextLine());
-							System.out.println("Enter amount of availabilities at the listing");
+							System.out.println("Enter amount of availabilities at the listing:");
 							int capacity = Integer.parseInt(input.nextLine());
 							System.out.println("Enter the type of listing (house, apartment, ect.):");
 							String housingType = input.nextLine();
@@ -205,10 +205,10 @@ public class HousingDriver {
 							while(true){
 								
 								String ammenity = input.nextLine();
-								driverammenities.add(ammenity);
 								if(ammenity.equalsIgnoreCase("done")) {
 									break;
 								}
+								driverammenities.add(ammenity);
 							}
 							
 								
@@ -226,6 +226,7 @@ public class HousingDriver {
 					
 						listings.addListing(listing);
 					}
+				continue;
 				}
 			}
 		
@@ -335,18 +336,10 @@ public class HousingDriver {
 			
 			System.out.println("Continue?");
 			String exitchoice = input.nextLine();
-			if(exitchoice.equals("no")){
-				listings.writeListings();
+			if(exitchoice.equalsIgnoreCase("no") || exitchoice.equalsIgnoreCase("n")){
 				System.exit(0);
 			}
 			
-			if(listings.getCount() > 5) {
-				System.out.println("Return to previous page?");
-				String backchoice = input.nextLine();
-			if(backchoice.equals("yes")){
-				listings.pageBackward();
-				}
-			}
 			
 		}
 	
