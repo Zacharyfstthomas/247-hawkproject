@@ -5,19 +5,41 @@ import java.util.ArrayList;
 import java.util.InputMismatchException;
 public class HousingDriver {
 
+	
+	boolean loggedIn = false;
 	//ideally to be used to log into an account, and register new accounts.
 	// "registering" referring to writing them into a json file.
 	
 	public void promptAccount() {
 		Scanner input = new Scanner(System.in);
+		AccountBrowser accounts = AccountBrowser.getInstance();
 		System.out.println("Welcome back! Do you have an account with us?");
 		String choice = input.nextLine();
 		
 		if(choice.equalsIgnoreCase("yes") || choice.equalsIgnoreCase("y")){
+			boolean tryagain = true;
+			while(tryagain) {
 			System.out.println("Username:");
 			String username = input.nextLine();
 			System.out.println("Password:");
 			String password = input.nextLine();
+			
+			boolean accFlag = false;
+			for(Account account : accounts.accounts) {
+				if(account.getUserName().equals(username) && account.getPassword().equals(password)) {
+					accFlag = true;
+					loggedIn = true;
+					
+				} 
+			}
+			
+			if(!accFlag) {
+				System.out.println("Incorrect username/password. Try again?");
+				if(choice.equalsIgnoreCase("no") || choice.equalsIgnoreCase("n")) {
+					tryagain = false;
+					}
+				}
+			}
 			//TODO Add verification ability through accountPage or accountBrowser, so it can actually verify that someone
 			// is logging into an actual account. As of now, just takes 2 inputs..
 			
@@ -25,10 +47,24 @@ public class HousingDriver {
 			System.out.println("Would you like to create one?");
 			choice = input.nextLine();
 			if(choice.equalsIgnoreCase("yes") || choice.equalsIgnoreCase("y")){
+				
+				System.out.println("Enter your Account Display name:");
+				String accountName = input.nextLine();
+				System.out.println("Enter your Full name:");
+				String userFullName = input.nextLine();
 				System.out.println("Enter your Username:");
-				String username = input.nextLine();
+				String userName = input.nextLine();
 				System.out.println("Enter your Password:");
 				String password = input.nextLine();
+				System.out.println("Enter your Date of birth (mm/dd/yyyy):");
+				String dob = input.nextLine();
+				System.out.println("Enter your Phone Number:");
+				String phoneNumber= input.nextLine();
+				System.out.println("Enter your Address:");
+				String address= input.nextLine();
+				
+				
+				accounts.addAccount(accountName, userFullName, dob, address, phoneNumber, userName, password);
 				//Other account details will be added here.
 			} 
 				
@@ -110,8 +146,8 @@ public class HousingDriver {
 			 choice = input.nextLine();
 			 
 			if(choice.equalsIgnoreCase("yes") || choice.equalsIgnoreCase("y")){
-				if(false) {
-					// Not logged in : let em know they gotta log in.
+				if(!loggedIn) {
+					System.out.println("You need to log in to produce a lease agreeement");
 				} else {
 				System.out.println("Which lease are you interested in? Choose them using their number.");
 				int IDchoice = -1;

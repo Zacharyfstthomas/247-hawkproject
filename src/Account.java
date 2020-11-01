@@ -2,14 +2,19 @@ public class Account {
 
 	protected String accountName;
 	protected String userFullName;
-	protected int dob;
+	protected String dob;
 	protected String address;
-	protected int phoneNumber;
+	protected String phoneNumber;
 	protected String userName;
 	protected String password;
-
 	
-	public Account(String accountName, String userFullName, int dob, String address, int phoneNumber, String userName, String password) {
+	
+	public Account() {
+		
+		
+	}
+	
+	public Account(String accountName, String userFullName, String dob, String address, String phoneNumber, String userName, String password) {
 		this.accountName = accountName;
 		this.userFullName = userFullName;
 		this.dob = dob;
@@ -18,11 +23,8 @@ public class Account {
 		this.userName = userName;
 		this.password = password;
 	}
-	
-	public void viewPage() {}
-	
-	public void deleteAccount() {}
 
+	
 	public String getAccountName() {
 		return accountName;
 	}
@@ -39,11 +41,11 @@ public class Account {
 		this.userFullName = userFullName;
 	}
 
-	public int getDob() {
+	public String getDob() {
 		return dob;
 	}
 
-	public void setDob(int dob) {
+	public void setDob(String dob) {
 		this.dob = dob;
 	}
 
@@ -55,11 +57,11 @@ public class Account {
 		this.address = address;
 	}
 
-	public int getPhoneNumber() {
+	public String getPhoneNumber() {
 		return phoneNumber;
 	}
 
-	public void setPhoneNumber(int phoneNumber) {
+	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
 

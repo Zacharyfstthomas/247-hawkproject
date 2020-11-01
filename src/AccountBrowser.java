@@ -4,7 +4,7 @@ public class AccountBrowser {
 	
 	public ArrayList<Account> accounts;
 	public static AccountBrowser accountbrowser;
-	private int count;
+	private AccountStorer accountstorer;
 	
 	public static AccountBrowser getInstance() {
 		if(accountbrowser == null) {
@@ -14,11 +14,37 @@ public class AccountBrowser {
 	}
 	
 	private AccountBrowser() {
-		this.count = 0;
 		this.accounts = new ArrayList<Account>();
+		accountstorer = new AccountStorer();
 	}
 	
-	public void addAccount(String accountName, String userFullName, int dob, String address, int phoneNumber, String userName, String password) {
+	
+	public Account getAccount(String accountName) {
+		
+		for(Account account : accounts) {
+			if(account.getAccountName().equals(accountName)) {
+				return account;
+			}
+		}
+		
+		return null;
+	}
+	
+	public void writeAccounts(){
+		
+		accountstorer.writeAccounts(this.accounts);
+	}
+	
+	public void readAccounts(){
+		
+		this.accounts = accountstorer.readAccounts();
+	}
+	
+	public void addAccount(Account account) {
+		accounts.add(account);
+	}
+	
+	public void addAccount(String accountName, String userFullName, String dob, String address, String phoneNumber, String userName, String password) {
 		Account account1 = new Account(accountName, userFullName, dob, address, phoneNumber, userName, password);
 		accounts.add(account1);
 	}
