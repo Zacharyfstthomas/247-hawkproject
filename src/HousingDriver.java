@@ -52,6 +52,8 @@ public class HousingDriver {
 			ListingBrowser listings = ListingBrowser.getInstance();
 			SearchListings find = new SearchListings();
 			
+			
+			listings.readListings();
 		//ListingStorer listingmanager = new ListingStorer();
 //							price address am. available, 2 bed 2 bath, distance, type, available(boolean), description
 			

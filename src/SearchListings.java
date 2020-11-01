@@ -113,9 +113,9 @@ public class SearchListings extends Search{
 		ArrayList<Listing> returnArrList = new ArrayList<Listing>();
 		for(Listing listing : listings) {
 			if(listing.hasAmmenities()) {
-			if(listing.foundAmmenityMatch(ammenity)) {
-				returnArrList.add(listing);
-			}
+				if(listing.foundAmmenityMatch(ammenity)) {
+					returnArrList.add(listing);
+					}
 			}
 			
 		}

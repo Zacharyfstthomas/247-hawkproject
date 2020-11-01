@@ -1,16 +1,5 @@
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+
 import java.util.ArrayList;
-
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-import org.json.simple.parser.*;
-
-
-//import jdk.nashorn.internal.parser.JSONParser;
-
-import org.json.*;
 
 public class ListingBrowser {
 
@@ -23,20 +12,14 @@ public class ListingBrowser {
 		if(listingbrowser == null) {
 			return new ListingBrowser();
 		}
-		listingbrowser.setListings();
-		return listingbrowser;
-	}
-
-	
-	private void setListings() {
-		this.listings = this.readListings();
 		
+		return listingbrowser;
 	}
 
 
 	private ListingBrowser() {
 		this.count = 0;
-		this.listings = this.readListings();
+		this.listingsstorer = new ListingStorer();
 	}
 	
 	//**ADD TO UML**
@@ -47,7 +30,7 @@ public class ListingBrowser {
 		Listing listing1 = new Listing(price, address, capacity,  bedrooms, baths, distance, housingType, avaliable, description);
 		listings.add(listing1);
 		listing1.setId(listings.size());
-		this.writeListing();
+		
 		
 	}
 	// not sure if this is nessicary...
@@ -56,7 +39,18 @@ public class ListingBrowser {
 		
 	}
 	
+	public void writeListings(){
+		
+		listingsstorer.writeListing(this.listings);
+	}
 	
+	public void readListings(){
+		
+		this.listings = listingsstorer.readListings();
+	}
+	
+	
+	/*
 	
 	private void writeListing() {
 		
@@ -130,7 +124,7 @@ public class ListingBrowser {
 		return returnListings;
 	} 
 	
-	
+	*/
 //count here is used to ensure that 5 listings are displayed a page.
 // Will hopefully continue through a steady line of all available listings
 // try-catch will break out of display when at the end of the list
