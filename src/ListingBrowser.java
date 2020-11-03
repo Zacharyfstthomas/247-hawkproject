@@ -1,13 +1,25 @@
 
 import java.util.ArrayList;
 
+/**
+ * Allows a user to search through Listings
+ * @author hkael
+ *
+ */
 public class ListingBrowser {
 
+	/**
+	 * Variables for ListingBroswer
+	 */
 	public ArrayList<Listing> listings; 
 	public static ListingBrowser listingbrowser;
 	private ListingStorer listingsstorer;
 	private int count;
 	
+	/**
+	 * checks to see if the listing browser is empty and if it is creates a new listing browser
+	 * @return listingbrowser
+	 */
 	public static ListingBrowser getInstance() {
 		if(listingbrowser == null) {
 			return new ListingBrowser();
@@ -16,7 +28,9 @@ public class ListingBrowser {
 		return listingbrowser;
 	}
 
-
+	/**
+	 * Constructor for ListingBrowser
+	 */
 	private ListingBrowser() {
 		this.count = 0;
 		this.listingsstorer = new ListingStorer();
@@ -26,6 +40,19 @@ public class ListingBrowser {
 
 	//As of now, used for adding default listings.
 	//Likely will be used for the other accounts as well.
+	/**
+	 * Adds a new listing with all the details required to be a listing
+	 * @param price
+	 * @param address
+	 * @param capacity
+	 * @param bedrooms
+	 * @param baths
+	 * @param distance
+	 * @param housingType
+	 * @param avaliable
+	 * @param description
+	 * @param owner
+	 */
 	public void addListing(double price, String address, int capacity, int bedrooms, int baths, double distance, String housingType, boolean avaliable, String description, String owner) {
 		Listing listing1 = new Listing(price, address, capacity,  bedrooms, baths, distance, housingType, avaliable, description, owner);
 		this.listings.add(listing1);
@@ -40,11 +67,17 @@ public class ListingBrowser {
 		this.writeListings();
 	}
 	
+	/**
+	 * 
+	 */
 	public void writeListings(){
 		
 		listingsstorer.writeListing(this.listings);
 	}
 	
+	/**
+	 * 
+	 */
 	public void readListings(){
 		
 		this.listings = listingsstorer.readListings();
@@ -55,7 +88,9 @@ public class ListingBrowser {
 // Will hopefully continue through a steady line of all available listings
 // try-catch will break out of display when at the end of the list
 	
-	// This displays the entire arrayList of Listings
+	/**
+	 * This displays the entire arrayList of Listings
+	 */
 	public void display() {
 		do{
 			try {
@@ -81,6 +116,11 @@ public class ListingBrowser {
 		
 	}
 	
+	/**
+	 * gets the listing Id
+	 * @param id
+	 * @return the listing if the listing Id is found if not returns null
+	 */
 	public Listing getListing(int id) {
 		for(Listing listing : listings) {
 			
@@ -92,7 +132,10 @@ public class ListingBrowser {
 		return null;
 	}
 	
-	// This displays an arrayList entered in, used more often than alone display
+	/**
+	 *  This displays an arrayList entered in, used more often than alone display
+	 * @param listings
+	 */
 	public void display(ArrayList<Listing> listings) {
 		if(listings == null) {
 			return;
@@ -114,12 +157,18 @@ public class ListingBrowser {
 		}
 	}
 
-	
+	/**
+	 * sets the amount of listings searched for
+	 * @return count
+	 */
 	public int getCount() {
 		
 		return this.count;
 	}
 	
+	/**
+	 * Allows the user to go back to see previous listings
+	 */
 	public void pageBackward() {
 		if(count % 5 == 0) {
 			++count;

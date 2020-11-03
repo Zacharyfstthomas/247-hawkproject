@@ -8,18 +8,28 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.*;
 
+/**
+ * Stores all the Listings a user has searched for
+ * @author hkael
+ *
+ */
 public class ListingStorer {
 	
 
 	// This ideally is where we'd put the JSON reader/writer?
 	public static ListingStorer listingstorer;
 
-	
+	/**
+	 * Default constructor
+	 */
 	public ListingStorer() {
 		
 	}
 	
-
+	/**
+	 * creates a new JSON array and then gets the size of the array followed by a try catch block for the JSON file
+	 * @param listings
+	 */
 	public void writeListing(ArrayList<Listing> listings) {
 		JSONArray jsonListings = new JSONArray();
 		
@@ -39,6 +49,11 @@ public class ListingStorer {
         }
 	}
 	
+	/**
+	 * creates a new JSONobject and put all the variables that define a listing into the file
+	 * @param listing
+	 * @return listingDetails
+	 */
 	private static JSONObject getListingJSON(Listing listing) {
 		
 		JSONObject listingDetails = new JSONObject();
@@ -67,7 +82,10 @@ public class ListingStorer {
         return listingDetails;
 	}
 
-
+	/**
+	 * Allows the JSON files to be read
+	 * @return returnListings
+	 */
 	public ArrayList<Listing> readListings() {
 		ArrayList<Listing> returnListings = new ArrayList<Listing>();
 			

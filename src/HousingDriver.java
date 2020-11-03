@@ -3,6 +3,12 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
+
+/**
+ * 
+ * @author hkael
+ *
+ */
 public class HousingDriver {
 
 	
@@ -10,6 +16,10 @@ public class HousingDriver {
 	//ideally to be used to log into an account, and register new accounts.
 	// "registering" referring to writing them into a json file.
 	
+	/**
+	 * Starts the program and checks to see if you have an account which the user will then input their username and password.
+	 * If the user doesn't have an account they will be asked if they want to create one and go through the account creation process.
+	 */
 	public void promptAccount() {
 		Scanner input = new Scanner(System.in);
 		AccountBrowser accounts = AccountBrowser.getInstance();
@@ -80,10 +90,12 @@ public class HousingDriver {
 		
 	}
 	
-	
-	
-	
-	
+	/**
+	 * This runs the program, a user can either add a listing inputing all the details a certain listing has or search for a listing inputting everything they are looking for in a certain listing.
+	 * If the user finds a listing that is suitable for them the program will ask if they want to see a lease agreement which the user will be required to log in for. 
+	 * @throws FileNotFoundException
+	 * @throws IOException
+	 */
 	public void run() throws FileNotFoundException, IOException {
 		
 		

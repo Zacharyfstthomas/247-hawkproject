@@ -1,50 +1,88 @@
 import java.io.*;
 import java.util.Date;
 
+/**
+ * Required to be able to rent a listing
+ * @author hkael
+ *
+ */
 public class LeaseAgreement extends Listing{
+	
+	/**
+	 * Variables for LeaseAgreement
+	 */
 	private Listing listing;
 	private String zipcode;
 	private String leaseStart;
 	private String leaseEnd;
 	
 	
+	/**
+	 * Constructor for LeaseAgreement
+	 * @param listing
+	 */
 	public LeaseAgreement(Listing listing) {
 		
 		this.listing = listing;
 		
 	}
 	
-	
+	/**
+	 * Accessor for Zipcode
+	 * @return zipcode
+	 */
 	public String getZipcode() {
 		return zipcode;
 	}
 
-
+	/**
+	 * Mutator for Zipcode and sets the zipcode equal to zipcode
+	 * @param zipcode
+	 */
 	public void setZipcode(String zipcode) {
 		this.zipcode = zipcode;
 	}
 
-
+	/**
+	 * Accessor for when a lease will start
+	 * @return leaseStart
+	 */
 	public String getLeaseStart() {
 		return leaseStart;
 	}
 
-
+	/**
+	 * Mutator for LeaseStart and sets leaseStart equal to leaseStart
+	 * @param leaseStart
+	 */
 	public void setLeaseStart(String leaseStart) {
 		this.leaseStart = leaseStart;
 	}
 
-
+	/**
+	 * Accessor for when the lease will end
+	 * @return leaseEnd
+	 */
 	public String getLeaseEnd() {
 		return leaseEnd;
 	}
 
-
+	/**
+	 * Mutator for LeaseEnd and sets leaseEnd equal to leaseEnd
+	 * @param leaseEnd
+	 */
 	public void setLeaseEnd(String leaseEnd) {
 		this.leaseEnd = leaseEnd;
 	}
 
-
+	/**
+	 * Goes through and creates a new file of the lease agreement and sets the terms of the lease
+	 * @param mainStudent
+	 * @param friendStudent
+	 * @param landlord
+	 * @throws FileNotFoundException
+	 * @throws IOException
+	 */
 	// may take parameters of three Accounts, user account, included account, and landlord account (for our sakes we can have this be person who created the listing, i hope.) Included account can be null (no other tenants).	
 	public void writeLeaseAgreement(Account mainStudent, Account friendStudent, Account landlord) throws FileNotFoundException, IOException {
 	//Scanner input = new Scanner(System.in);

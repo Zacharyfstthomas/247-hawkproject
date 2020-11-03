@@ -9,19 +9,28 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.*;
 
 
-
+/**
+ * Stores all Accounts from the JSON reader/writer
+ * @author hkael
+ *
+ */
 public class AccountStorer {
 	
 
 	// This ideally is where we'd put the JSON reader/writer?
 	public static AccountStorer accountstorer;
 
-	
+	/**
+	 * Default constructor for AccountStorer
+	 */
 	public AccountStorer() {
 		
 	}
 	
-
+	/**
+	 * creates a new JSON array and then gets the size of the array followed by a try catch block for the JSON file
+	 * @param accounts
+	 */
 	public void writeAccounts(ArrayList<Account> accounts) {
 	
 		JSONArray jsonaccounts = new JSONArray();
@@ -42,6 +51,11 @@ public class AccountStorer {
         }
 	}
 	
+	/**
+	 * creates a new JSONobject and put all the variables that define an account into the file
+	 * @param account
+	 * @return all the details of a given account
+	 */
 	private static JSONObject getaccountJSON(Account account) {
 		
 		JSONObject accountDetails = new JSONObject();
@@ -57,7 +71,10 @@ public class AccountStorer {
         return accountDetails;
 	}
 
-
+	/**
+	 * Allows the JSON files to be read
+	 * @return accounts
+	 */
 	public ArrayList<Account> readAccounts() {
 		
 		ArrayList<Account> returnAccounts = new ArrayList<Account>();
