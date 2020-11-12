@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 /**
  * Allows a user to browse through account 
- * @author hkael
+ * @author hkael, zstthomas, hfaus, 
  *
  */
 public class AccountBrowser {

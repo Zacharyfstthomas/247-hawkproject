@@ -6,12 +6,12 @@ import java.util.InputMismatchException;
 
 /**
  * 
- * @author hkael
+ * @author hkael, zacstthomas, hfaus, groach
  *
  */
 public class HousingDriver {
 
-	
+	Account userAccount; 
 	boolean loggedIn = false;
 	//ideally to be used to log into an account, and register new accounts.
 	// "registering" referring to writing them into a json file.
@@ -41,6 +41,7 @@ public class HousingDriver {
 					accFlag = true;
 					loggedIn = true;
 					tryagain = false;
+					userAccount = account;
 					System.out.println("Login successful.");
 				} 
 			}
@@ -53,7 +54,7 @@ public class HousingDriver {
 					}
 				}
 			}
-			//TODO Add verification ability through accountPage or accountBrowser, so it can actually verify that someone
+			//Add verification ability through accountPage or accountBrowser, so it can actually verify that someone
 			// is logging into an actual account. As of now, just takes 2 inputs..
 			
 		} else {
@@ -203,8 +204,8 @@ public class HousingDriver {
 							int baths= Integer.parseInt(input.nextLine());
 							System.out.println("Enter the listing's description:");
 							String description= input.nextLine();
-							System.out.println("Enter your account name:");
-							String owner = input.nextLine(); 
+							//Account name we can get from what they logged in as
+							String owner = userAccount.getAccountName(); 
 							
 							System.out.println("Does the listing have ammenities?");
 							boolean hasAmmenties = false;
@@ -294,6 +295,8 @@ public class HousingDriver {
 					System.out.println("Invalid input, ignoring.");
 				}
 				 boolean foundFlag = false;
+				 
+				 //Method here to do this
 				for(Listing listing : listings.listings) {
 					if(listing.getId() == IDchoice){
 						foundFlag = true;
@@ -314,21 +317,21 @@ public class HousingDriver {
 						if(answer.equalsIgnoreCase("yes") || answer.equalsIgnoreCase("y")) {
 							System.out.println("Enter their account name");
 							String friendAccountName = input.nextLine();
-							System.out.println("Enter your account name");
-							String accountName = input.nextLine(); 
-							System.out.println("Enter the owner's account name");
-							String landLordAccountName = input.nextLine();
+							//Your account name: grab from userAccount
+							String accountName = userAccount.getAccountName(); 
+							//The landlord account's name: grab from the listing's owner string.
+							String landLordAccountName = listings.getListing(IDchoice).getOwner();
 						try {
 							leaseSign.writeLeaseAgreement(accounts.getAccount(accountName), accounts.getAccount(friendAccountName), accounts.getAccount(landLordAccountName));
 							
 							} catch (NullPointerException e) {
-								System.out.println("One of those accounts wasn't found. The lease agreement was not generated.");
+								System.out.println("Freind's account wasn't found. The lease agreement was not generated.");
 							}
 						} else {
-							System.out.println("Enter your account name");
-							String accountName = input.nextLine(); 
-							System.out.println("Enter the owner's account name");
-							String landLordAccountName = input.nextLine();
+							String accountName = userAccount.getAccountName(); 
+							//The landlord account's name: grab from the listing's owner string.
+							String landLordAccountName = listings.getListing(IDchoice).getOwner();
+						
 						try {
 							leaseSign.writeLeaseAgreement(accounts.getAccount(accountName), null, accounts.getAccount(landLordAccountName));
 							
@@ -346,6 +349,7 @@ public class HousingDriver {
 			
 			
 			
+			
 			System.out.println("Continue?");
 			String exitchoice = input.nextLine();
 			if(exitchoice.equalsIgnoreCase("no") || exitchoice.equalsIgnoreCase("n")){
@@ -357,6 +361,12 @@ public class HousingDriver {
 	
 	}
 	
+	private void leaseSignPrompts(int idChoice){
+		
+		
+		
+		
+	}	
 	public static void main(String[] args) throws FileNotFoundException, IOException{
 		HousingDriver stockDriver = new HousingDriver();
 		stockDriver.promptAccount();
