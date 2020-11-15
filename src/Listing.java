@@ -194,7 +194,7 @@ public class Listing {
 	 */
 	public String toString() {
 		
-		return this.address + "\nAmount Avaliable: " + this.capacity + "\nDistance from Campus: " + this.distance + "\nHousing Type: " + this.housingType + "\nBedrooms: "+ this.bedrooms + "\nBaths: " + this.baths + "\nDescription: " + this.description + "\nPrice: " + this.price + "\nOwner: " + this.owner;
+		return "\n" + this.address + "\nAmount Avaliable: " + this.capacity + "\nDistance from Campus: " + this.distance + "\nHousing Type: " + this.housingType + "\nBedrooms: "+ this.bedrooms + "\nBaths: " + this.baths + "\nDescription: " + this.description + "\nPrice: " + this.price + "\nOwner: " + this.owner;
 	}
 	
 	/**
@@ -354,8 +354,22 @@ public class Listing {
 		
 		
 	}
+/*
+ * this.capacity = capacity;
+			this.bedrooms = bedrooms;
+			this.baths = baths;
+			this.distance = distance;
+			this.housingType = housingType;
+			this.avaliable = avaliable;
+			this.description = description;
+			this.owner = owner;
+ * 
+ */
 
-
+	public boolean equals(Listing listing) {
+		return this.price == listing.getPrice() && this.address.equals(listing.getAddress()) && this.capacity == listing.getCapacity() && this.bedrooms == listing.getBedrooms() && this.baths == listing.getBaths() && this.distance == listing.getDistance() && this.housingType.equals(listing.getHousingType()) && this.avaliable == listing.isAvaliable() && this.description.equals(listing.getDescription()) && this.owner.equals(listing.getOwner());
+		
+	}
 	
 	
 }

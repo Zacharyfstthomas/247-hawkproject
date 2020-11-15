@@ -90,29 +90,32 @@ public class ListingBrowser {
 	
 	/**
 	 * This displays the entire arrayList of Listings
+	 * @return 
 	 */
-	public void display() {
+	public String display() {
+		
+		String returnString = "";
 		do{
 			try {
 				Listing listing = listings.get(count);
 				count++;
 				if(listing.isAvaliable()) {
-				System.out.println("--------------- Listing " + (listing.getId()) + " ------------------");	
+				returnString += "\n--------------- Listing " + (listing.getId()) + " ------------------";	
 				if((listing.getAmmenitiesArrayList() != null) && (listing.getAmmenitiesSize() != 0)) {
-					System.out.println(listing.toString());
-					System.out.println(listing.returnAmenities());
+					returnString += listing.toString();
+					returnString += listing.returnAmenities();
 					
 				} else {
 				
-				System.out.println(listing.toString());
+					returnString +=listing.toString();
 					}	
 				
 			} } catch(IndexOutOfBoundsException e){
-				return;
+				return returnString;
 			}
 		}while(count % 25  != 0);
 		
-		
+		return returnString;
 		
 	}
 	
@@ -136,25 +139,21 @@ public class ListingBrowser {
 	 *  This displays an arrayList entered in, used more often than alone display
 	 * @param listings
 	 */
-	public void display(ArrayList<Listing> listings) {
-		if(listings == null) {
-			return;
-			}
-		if(listings.size() == 0) {
-			System.out.println("No results found.");
-		}
-		System.out.println("Results:");
+	public String display(ArrayList<Listing> listings) {
+		String returnString = "";
 		for(Listing listing : listings) {
-			System.out.println("--------------- Listing " + (listing.getId()) + " ------------------");	
+			returnString += "\n--------------- Listing " + (listing.getId()) + " ------------------ \n";	
 			// returns list of ammenities if ammenities is not empty
 			if((listing.getAmmenitiesArrayList() != null) && (listing.getAmmenitiesSize() != 0)) {
-				System.out.println(listing.toString());
-				System.out.println(listing.returnAmenities());
+				returnString +=(listing.toString());
+				returnString +=(listing.returnAmenities());
 				
 			} else {
-			System.out.println(listing.toString());
+				returnString +=listing.toString();
 			}
 		}
+		
+		return returnString;
 	}
 
 	/**

@@ -8,37 +8,7 @@ public class SearchListings extends Search{
 	protected ArrayList<Listing> listings; 
 	
 	//Search so far takes in a criteria which identifies whether its price, address, or whatever it may be
-	// Then branches and takes in a double, int or string, depending on what was enterd
-	public ArrayList<Listing> getCriteria(ArrayList<Listing> listings) {
-		
-		this.listings = listings;
-		
-		Scanner input = new Scanner(System.in);
-		System.out.println("Enter your criteria of search:");
-		String criteria = input.nextLine(); 
-		
-		if(criteria.equalsIgnoreCase("price") || criteria.equalsIgnoreCase("distance")) {
-			System.out.println("Enter the value to search for:");
-			double doubValue = input.nextDouble(); 
-			return this.findDoubMatches(criteria, doubValue);
-		}
-		 
-		if(criteria.equalsIgnoreCase("address") || criteria.equalsIgnoreCase("description") || criteria.equalsIgnoreCase("housing type") || criteria.equalsIgnoreCase("housing") || criteria.equalsIgnoreCase("housingtype") ) {
-			System.out.println("Enter the value to search for:");
-			String strnValue = input.next(); 
-			return this.findStrnMatches(criteria, strnValue);
-		}
-		
-		if(criteria.equalsIgnoreCase("bedrooms") || criteria.equalsIgnoreCase("baths") || criteria.equalsIgnoreCase("amountavaliable") || criteria.equalsIgnoreCase("amount avaliable") || criteria.equalsIgnoreCase("id")) {
-			System.out.println("Enter the value to search for:");
-			int intValue = input.nextInt(); 
-			return this.findIntMatches(criteria, intValue);
-			
-		}
-		
-		System.out.println("Invalid criteria selection, will ignore");
-		return null;
-	}
+	// Then branches and takes in a double, int or string, depending on what was entered
 
 	
 	// Lines below could be replaced by iterator design pattern
@@ -101,7 +71,11 @@ public class SearchListings extends Search{
 				if(listing.getDescription().equals(value)) {
 					returnArrList.add(listing);
 				}
-			} else {
+			}  else if(criteria.contentEquals("owner")) {
+				if(listing.getOwner().equals(value)) {
+					returnArrList.add(listing);
+				}
+			}else {
 				if(listing.getHousingType().equals(value)) {
 					returnArrList.add(listing);
 				}				
@@ -123,5 +97,6 @@ public class SearchListings extends Search{
 		}
 		return returnArrList;
 	}
+	
 	
 }

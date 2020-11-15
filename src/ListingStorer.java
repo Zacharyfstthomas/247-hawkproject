@@ -16,7 +16,23 @@ import org.json.simple.parser.*;
 public class ListingStorer {
 	
 
-	// This ideally is where we'd put the JSON reader/writer?
+	
+	private static final String FILELOCATION = "src/listing.json";
+	private static final String PRICE = "price";
+	private static final String ADDRESS= "address";
+	private static final String CAPACITY = "capacity";
+	private static final String ID = "id";
+	private static final String DISTANCE = "distance";
+	private static final String HOUSINGTYPE = "housingType";
+	private static final String BEDROOMS = "bedrooms";
+	private static final String BATHS = "baths";
+	private static final String DESCRIPTION = "description";
+	private static final String AVAILABLE = "available";
+	private static final String HASAMMENITIES = "hasAmmenities";
+	private static final String AMOUNTAMMENITIES = "amountAmmenities";
+	private static final String OWNER = "owner";
+	private static final String AMMENITY = "ammenity ";
+	
 	public static ListingStorer listingstorer;
 
 	/**
@@ -30,7 +46,7 @@ public class ListingStorer {
 	 * creates a new JSON array and then gets the size of the array followed by a try catch block for the JSON file
 	 * @param listings
 	 */
-	public void writeListing(ArrayList<Listing> listings) {
+	public static void writeListing(ArrayList<Listing> listings) {
 		JSONArray jsonListings = new JSONArray();
 		
 		//creating all the json objects
@@ -39,7 +55,7 @@ public class ListingStorer {
 		}
 		
 		//Write JSON file
-        try (FileWriter file = new FileWriter("src/listing.json")) {
+        try (FileWriter file = new FileWriter(FILELOCATION)) {
  
             file.write(jsonListings.toJSONString());
             file.flush();
@@ -57,25 +73,25 @@ public class ListingStorer {
 	private static JSONObject getListingJSON(Listing listing) {
 		
 		JSONObject listingDetails = new JSONObject();
-		listingDetails.put("price", listing.getPrice());
-		listingDetails.put("address", listing.getAddress());
-		listingDetails.put("capacity", listing.getCapacity());
-		listingDetails.put("id", listing.getId());
-		listingDetails.put("distance", listing.getDistance());
-		listingDetails.put("housingType", listing.getHousingType());
-		listingDetails.put("bedrooms", listing.getBedrooms());
-		listingDetails.put("baths", listing.getBaths());
-		listingDetails.put("description", listing.getDescription());
-		listingDetails.put("available", listing.isAvaliable());
-		listingDetails.put("hasAmmenities", listing.hasAmmenities());
-		listingDetails.put("amountAmmenities", listing.getAmmenitiesSize());
-		listingDetails.put("owner", listing.getOwner());
+		listingDetails.put(PRICE, listing.getPrice());
+		listingDetails.put(ADDRESS, listing.getAddress());
+		listingDetails.put(CAPACITY, listing.getCapacity());
+		listingDetails.put(ID, listing.getId());
+		listingDetails.put(DISTANCE, listing.getDistance());
+		listingDetails.put(HOUSINGTYPE, listing.getHousingType());
+		listingDetails.put(BEDROOMS, listing.getBedrooms());
+		listingDetails.put(BATHS, listing.getBaths());
+		listingDetails.put(DESCRIPTION, listing.getDescription());
+		listingDetails.put(AVAILABLE, listing.isAvaliable());
+		listingDetails.put(HASAMMENITIES, listing.hasAmmenities());
+		listingDetails.put(AMOUNTAMMENITIES, listing.getAmmenitiesSize());
+		listingDetails.put(OWNER, listing.getOwner());
 		if(listing.hasAmmenities()) {
 			
 			ArrayList<String> ammenities = listing.getAmmenitiesArrayList();
 			
 			for(int i = 0; i < ammenities.size(); i++) {
-				listingDetails.put("ammenity " + i, ammenities.get(i));
+				listingDetails.put(AMMENITY + i, ammenities.get(i));
 			}
 		}
 		
@@ -86,34 +102,34 @@ public class ListingStorer {
 	 * Allows the JSON files to be read
 	 * @return returnListings
 	 */
-	public ArrayList<Listing> readListings() {
+	public static ArrayList<Listing> readListings() {
 		ArrayList<Listing> returnListings = new ArrayList<Listing>();
 			
 			try {
-				FileReader reader = new FileReader("src/listing.json");
+				FileReader reader = new FileReader(FILELOCATION);
 				JSONParser parser = new JSONParser();
 				JSONArray jsonlistings = (JSONArray) parser.parse(reader);
 				
 				for(int i = 0; i < jsonlistings.size(); i++) {
 					JSONObject JSONlisting = (JSONObject)jsonlistings.get(i);
 					Listing listing = new Listing();
-					listing.setPrice((double) JSONlisting.get("price"));
-					listing.setAddress((String) JSONlisting.get("address"));
-					listing.setCapacity((int) (long) JSONlisting.get("capacity"));
-					listing.setId((int) (long) JSONlisting.get("id"));
-					listing.setDistance((double) JSONlisting.get("distance"));
-					listing.setHousingType((String) JSONlisting.get("housingType"));
-					listing.setBedrooms((int) (long) JSONlisting.get("bedrooms"));
-					listing.setBaths((int) (long) JSONlisting.get("baths"));
-					listing.setDescription((String) JSONlisting.get("description"));
-					listing.setAvaliability((boolean) JSONlisting.get("available"));
-					listing.setHasAmmenities((boolean) JSONlisting.get("hasAmmenities"));
-					listing.setOwner((String) JSONlisting.get("owner"));
-					int amountAmmenities = ((int)(long) JSONlisting.get("amountAmmenities"));
+					listing.setPrice((double) JSONlisting.get(PRICE));
+					listing.setAddress((String) JSONlisting.get(ADDRESS));
+					listing.setCapacity((int) (long) JSONlisting.get(CAPACITY));
+					listing.setId((int) (long) JSONlisting.get(ID));
+					listing.setDistance((double) JSONlisting.get(DISTANCE));
+					listing.setHousingType((String) JSONlisting.get(HOUSINGTYPE));
+					listing.setBedrooms((int) (long) JSONlisting.get(BEDROOMS));
+					listing.setBaths((int) (long) JSONlisting.get(BATHS));
+					listing.setDescription((String) JSONlisting.get(DESCRIPTION));
+					listing.setAvaliability((boolean) JSONlisting.get(AVAILABLE));
+					listing.setHasAmmenities((boolean) JSONlisting.get(HASAMMENITIES));
+					listing.setOwner((String) JSONlisting.get(OWNER));
+					int amountAmmenities = ((int)(long) JSONlisting.get(AMOUNTAMMENITIES));
 					if(listing.hasAmmenities()) {
 						listing.createAmmenitiesArrayList();
 						for(int j = 0; j < amountAmmenities; j++) {
-							listing.addAmmenity((String) JSONlisting.get("ammenity " + j));
+							listing.addAmmenity((String) JSONlisting.get(AMMENITY + j));
 							
 						}
 					}
