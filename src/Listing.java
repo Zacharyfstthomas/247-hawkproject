@@ -2,7 +2,7 @@ import java.util.*;
 
 /**
  * Details of a property that can be rented
- * @author hkael
+ * @author hkael,zacstthomas,groach,hfaus
  *
  */
 public class Listing {

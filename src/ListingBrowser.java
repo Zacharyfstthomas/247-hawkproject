@@ -60,7 +60,7 @@ public class ListingBrowser {
 		this.writeListings();
 		
 	}
-	// not sure if this is nessicary...
+	
 	public void addListing(Listing listing) {
 		this.listings.add(listing);
 		listing.setId(listings.size());
