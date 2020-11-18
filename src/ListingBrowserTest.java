@@ -28,13 +28,12 @@ public class ListingBrowserTest {
 	}
 /*
  * tests for addListing
- * MISSING ID!!
  */
 	@Test
 	public void testCreateValidListing() {
 		listing.add(500.00 , "576 Greene St" , 2 , 4 , 3 , 5.2 , "apartment" , "yes availible" , "beautiful upper apartment close to campus" , "Jacob Brown");
 		listing = new Listing();
-		assertEquals("success - 576 Greene St listing created" , );
+		assertEquals("success - 576 Greene St listing created" , listing);
 	}
 	
 /*
